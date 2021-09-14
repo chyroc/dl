@@ -3,6 +3,7 @@ module github.com/chyroc/dl
 go 1.17
 
 require (
+	github.com/PuerkitoBio/goquery v1.7.1
 	github.com/briandowns/spinner v1.16.0
 	github.com/chyroc/gorequests v0.26.0
 	github.com/sirupsen/logrus v1.8.1
@@ -14,6 +15,7 @@ require (
 require (
 	github.com/VividCortex/ewma v1.1.1 // indirect
 	github.com/acarl005/stripansi v0.0.0-20180116102854-5a71ef0e047d // indirect
+	github.com/andybalholm/cascadia v1.2.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fatih/color v1.7.0 // indirect

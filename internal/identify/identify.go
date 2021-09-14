@@ -12,8 +12,11 @@ func Identify(uri string) (parse.Parser, error) {
 	if err != nil {
 		return nil, fmt.Errorf("parse url: %q failed: %w", uri, err)
 	}
-	if uriParsed.Host == "video.sina.com.cn" {
+	switch uriParsed.Host {
+	case "video.sina.com.cn":
 		return parse.NewVideoSinaComCn(), nil
+	case "haokan.baidu.com":
+		return parse.NewHaokanBaiduCom(), nil
 	}
 
 	return nil, nil

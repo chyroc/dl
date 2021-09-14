@@ -9,7 +9,7 @@ type Specification struct {
 type SpecificationList []*Specification
 
 func (r SpecificationList) GetMax() *Specification {
-	var size int64
+	var size int64 = -1
 	var pkg *Specification
 	for _, v := range r {
 		if v.Size > size {
