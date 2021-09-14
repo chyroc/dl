@@ -9,6 +9,7 @@ support:
 - v.youku.com
 - haokan.baodu.com
 - video.sina.com.cn
+- m.weibo.cn
 
 ## Install
 
