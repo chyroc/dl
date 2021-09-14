@@ -28,11 +28,11 @@ brew install chyroc/tap/dl
 ## Usage
 
 ```shell
-dl https://v.youku.com/v_show/id_XNTgwNTgzNTYwNA==
+dl 'https://haokan.baidu.com/v?vid=7249594116085322255'
 
-[meta] youku.com
-[download] 程序员那么可爱：姜逸城吃醋三大症状 ！.mp4
-[download] 6.87 MiB / 6.87 MiB 100 % [==================] 1.09 MiB/s
+[meta] haokan.baidu.com
+[download] 蜡笔小新：小新一家来采茶园玩，猜茶环节小新胜出，主办方亏大了,动漫,日本动漫,好看视频.mp4
+[download] 13.65 MiB / 13.65 MiB 100 % [==================] 298.11 KiB/s
 ```
 
 # Other
