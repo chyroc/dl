@@ -12,17 +12,17 @@ import (
 	"github.com/chyroc/gorequests"
 )
 
-func NewYoukuCom() Parser {
-	return &youkuCom{}
+func NewVYoukuCom() Parser {
+	return &vYoukuCom{}
 }
 
-type youkuCom struct{}
+type vYoukuCom struct{}
 
-func (r *youkuCom) Kind() string {
-	return "youku.com"
+func (r *vYoukuCom) Kind() string {
+	return "v.youku.com"
 }
 
-func (r *youkuCom) Parse(uri string) (download.Downloader, error) {
+func (r *vYoukuCom) Parse(uri string) (download.Downloader, error) {
 	meta, err := r.getMeta(uri)
 	if err != nil {
 		return nil, err
@@ -40,7 +40,7 @@ func (r *youkuCom) Parse(uri string) (download.Downloader, error) {
 	return download.NewDownloadURL(title, title+".mp4", specs), nil
 }
 
-func (r *youkuCom) getVideoID(uri string) (string, error) {
+func (r *vYoukuCom) getVideoID(uri string) (string, error) {
 	match := youkuComRegId.FindStringSubmatch(uri)
 	if len(match) == 2 {
 		return match[1], nil
@@ -48,7 +48,7 @@ func (r *youkuCom) getVideoID(uri string) (string, error) {
 	return "", fmt.Errorf("parse %q, get video_id failed", uri)
 }
 
-func (r *youkuCom) getMeta(uri string) (*youkuComGetMetaResp, error) {
+func (r *vYoukuCom) getMeta(uri string) (*youkuComGetMetaResp, error) {
 	videoID, err := r.getVideoID(uri)
 	if err != nil {
 		return nil, err

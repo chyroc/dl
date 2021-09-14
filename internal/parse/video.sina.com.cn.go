@@ -3,6 +3,7 @@ package parse
 import (
 	"fmt"
 	"net/http"
+	"net/url"
 	"regexp"
 	"strconv"
 
@@ -69,16 +70,7 @@ func (r *videoSinaComCn) getVideoMeta(originURL string, videoID int64) (*videoSi
 		"tags":     "sinaplayer_pc",
 		"player":   "all",
 	}
-	header := map[string]string{
-		"Host":       "api.ivideo.sina.com.cn",
-		"Connection": "keep-alive",
-		"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36",
-		"Accept":     "*/*",
-		"Origin":     "http://video.sina.com.cn",
-		"Referer":    originURL,
-		// "Accept-Encoding": "gzip, deflate",
-		"Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
-	}
+	header := prepareCommonHeader(originURL, nil)
 	resp := new(videoSinaComCnGetVideoMetaResp)
 
 	err := gorequests.New(http.MethodGet, uri).WithQuerys(query).WithHeaders(header).WithLogger(config.WithLogger()).Unmarshal(resp)
@@ -126,3 +118,18 @@ var (
 	videoSinaComCnVideoIDReg = regexp.MustCompile(`video_id:'?(\d+)'?,`)
 	userAgent                = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36"
 )
+
+func prepareCommonHeader(uri string, s map[string]string) map[string]string {
+	uriParsed, _ := url.Parse(uri)
+	res := map[string]string{
+		"Host":       uriParsed.Host,
+		"User-Agent": userAgent,
+		"Accept":     "*/*",
+		"Origin":     uri,
+		"Referer":    uri,
+	}
+	for k, v := range s {
+		res[k] = v
+	}
+	return res
+}
