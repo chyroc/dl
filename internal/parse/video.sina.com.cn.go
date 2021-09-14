@@ -122,4 +122,7 @@ type videoSinaComCnGetVideoMetaResp struct {
 	ErrorMessage string `json:"errorMessage"`
 }
 
-var videoSinaComCnVideoIDReg = regexp.MustCompile(`video_id:'?(\d+)'?,`)
+var (
+	videoSinaComCnVideoIDReg = regexp.MustCompile(`video_id:'?(\d+)'?,`)
+	userAgent                = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36"
+)

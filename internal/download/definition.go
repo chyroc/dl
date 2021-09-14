@@ -24,9 +24,9 @@ func MayConvertDefinition(s string) Definition {
 
 func ConvertDefinition(s string) (Definition, error) {
 	switch strings.TrimSpace(strings.ToLower(s)) {
-	case "sd":
+	case "sd", "mp4sd":
 		return DefinitionSD, nil
-	case "hd":
+	case "hd", "mp4hd", "mp4hd2v2":
 		return DefinitionHD, nil
 	case "uhd":
 		return DefinitionUHD, nil

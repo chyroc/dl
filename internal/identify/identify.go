@@ -17,6 +17,8 @@ func Identify(uri string) (parse.Parser, error) {
 		return parse.NewVideoSinaComCn(), nil
 	case "haokan.baidu.com":
 		return parse.NewHaokanBaiduCom(), nil
+	case "v.youku.com":
+		return parse.NewYoukuCom(), nil
 	}
 
 	return nil, nil
