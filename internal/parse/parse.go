@@ -5,5 +5,6 @@ import (
 )
 
 type Parser interface {
+	Kind() string
 	Parse(uri string) (download.Downloader, error)
 }

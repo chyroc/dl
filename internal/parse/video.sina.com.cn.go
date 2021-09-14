@@ -18,12 +18,31 @@ func NewVideoSinaComCn() Parser {
 
 type videoSinaComCn struct{}
 
+func (r *videoSinaComCn) Kind() string {
+	return "video.sina.com.cn"
+}
+
 func (r *videoSinaComCn) Parse(uri string) (download.Downloader, error) {
 	videoID, err := r.getVideoID(uri)
 	if err != nil {
 		return nil, err
 	}
-	return r.getVideoMeta(uri, videoID)
+	meta, err := r.getVideoMeta(uri, videoID)
+	if err != nil {
+		return nil, err
+	}
+
+	// 组装数据
+	specs := []*download.Specification{}
+	for _, v := range meta.Data.Videos {
+		specs = append(specs, &download.Specification{
+			Size:       helper.MayStringToInt64(v.Size),
+			Definition: download.MayConvertDefinition(v.Definition),
+			URL:        v.DispatchResult.URL,
+		})
+	}
+
+	return download.NewDownloadURL(meta.Data.Title, meta.Data.Title+".mp4", specs), nil
 }
 
 func (r *videoSinaComCn) getVideoID(uri string) (int64, error) {
@@ -40,7 +59,7 @@ func (r *videoSinaComCn) getVideoID(uri string) (int64, error) {
 	return 0, fmt.Errorf("parse %q video_id failed", uri)
 }
 
-func (r *videoSinaComCn) getVideoMeta(originURL string, videoID int64) (download.Downloader, error) {
+func (r *videoSinaComCn) getVideoMeta(originURL string, videoID int64) (*videoSinaComCnGetVideoMetaResp, error) {
 	uri := "http://api.ivideo.sina.com.cn/public/video/play"
 	query := map[string]string{
 		"video_id": strconv.FormatInt(videoID, 10),
@@ -69,17 +88,7 @@ func (r *videoSinaComCn) getVideoMeta(originURL string, videoID int64) (download
 		return nil, fmt.Errorf(resp.Message)
 	}
 
-	pkgs := []*download.Pkg{}
-	for _, v := range resp.Data.Videos {
-		pkgs = append(pkgs, &download.Pkg{
-			Size:       helper.MayStringToInt64(v.Size),
-			Definition: download.MayConvertDefinition(v.Definition),
-			URL:        v.DispatchResult.URL,
-			Type:       v.Type,
-		})
-	}
-
-	return download.NewDownloadURL(resp.Data.Title, pkgs), nil
+	return resp, nil
 }
 
 type videoSinaComCnGetVideoMetaResp struct {

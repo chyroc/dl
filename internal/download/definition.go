@@ -5,6 +5,18 @@ import (
 	"strings"
 )
 
+// https://www.image-engineering.de/library/technotes/991-separating-sd-hd-full-hd-4k-and-8k
+type Definition string
+
+const (
+	DefinitionSD     Definition = "sd"
+	DefinitionHD     Definition = "hd"
+	DefinitionFullHD Definition = "full-hd"
+	DefinitionUHD    Definition = "uhd"
+	Definition4K     Definition = "4k"
+	Definition8K     Definition = "8k"
+)
+
 func MayConvertDefinition(s string) Definition {
 	res, _ := ConvertDefinition(s)
 	return res

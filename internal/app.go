@@ -20,11 +20,13 @@ func Run(c *cli.Context) error {
 	} else if parser == nil {
 		return fmt.Errorf("unsupport %q", uri)
 	}
+	fmt.Printf("[meta] %s\n", parser.Kind())
 
 	downloader, err := parser.Parse(uri)
 	if err != nil {
 		return err
 	}
+	fmt.Printf("[download] %s\n", downloader.TargetFile())
 
 	err = downloader.Download()
 	if err != nil {
