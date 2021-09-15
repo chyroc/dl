@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/PuerkitoBio/goquery v1.7.1
 	github.com/briandowns/spinner v1.16.0
-	github.com/chyroc/gorequests v0.26.0
+	github.com/chyroc/gorequests v0.27.0
 	github.com/sirupsen/logrus v1.8.1
 	github.com/stretchr/testify v1.7.0
 	github.com/urfave/cli/v2 v2.3.0

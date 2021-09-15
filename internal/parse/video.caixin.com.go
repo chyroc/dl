@@ -9,7 +9,6 @@ import (
 
 	"github.com/chyroc/dl/internal/config"
 	"github.com/chyroc/dl/internal/download"
-	"github.com/chyroc/gorequests"
 )
 
 func NewVideoCaixinCom() Parser {
@@ -50,7 +49,8 @@ func (r *videoCaixinCom) Parse(uri string) (download.Downloader, error) {
 }
 
 func (r *videoCaixinCom) getVideoID(uri string) (string, string, error) {
-	text, err := gorequests.New(http.MethodGet, uri).WithHeaders(prepareCommonHeader(uri, nil)).WithLogger(config.WithLogger()).Text()
+	header := prepareCommonHeader(uri, nil)
+	text, err := config.ReqCli.New(http.MethodGet, uri).WithHeaders(header).Text()
 	if err != nil {
 		return "", "", err
 	}
@@ -68,7 +68,7 @@ func (r *videoCaixinCom) getVideoToken(originURL string, videoID string) (*video
 	header := prepareCommonHeader(originURL, nil)
 	resp := new(videoCaixinComGetVideoTokenResp)
 
-	err := gorequests.New(http.MethodGet, uri).WithQuerys(query).WithHeaders(header).WithLogger(config.WithLogger()).Unmarshal(resp)
+	err := config.ReqCli.New(http.MethodGet, uri).WithQuerys(query).WithHeaders(header).Unmarshal(resp)
 	if err != nil {
 		return nil, err
 	} else if resp.Message != "" {
@@ -88,8 +88,10 @@ func (r *videoCaixinCom) getVideoToken(originURL string, videoID string) (*video
 
 func (r *videoCaixinCom) getVideoMeta(originURL string, token string) (*videoCaixinComMeta, error) {
 	uri := fmt.Sprintf("https://vod.bytedanceapi.com/?%s&ssl=true", token)
+	header := prepareCommonHeader(originURL, nil)
 	resp := new(videoCaixinComGetMetaResp)
-	err := gorequests.New(http.MethodGet, uri).WithHeaders(prepareCommonHeader(originURL, nil)).WithLogger(gorequests.NewDiscardLogger()).Unmarshal(resp)
+
+	err := config.ReqCli.New(http.MethodGet, uri).WithHeaders(header).Unmarshal(resp)
 	if err != nil {
 		return nil, err
 	} else if resp.ResponseMetadata.Error.Message != "" {

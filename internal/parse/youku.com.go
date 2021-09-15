@@ -9,7 +9,6 @@ import (
 
 	"github.com/chyroc/dl/internal/config"
 	"github.com/chyroc/dl/internal/download"
-	"github.com/chyroc/gorequests"
 )
 
 func NewVYoukuCom() Parser {
@@ -68,7 +67,7 @@ func (r *vYoukuCom) getMeta(uri string) (*youkuComGetMetaResp, error) {
 	}
 	resp := new(youkuComGetMetaResp)
 
-	err = gorequests.New(http.MethodGet, "https://ups.youku.com/ups/get.json").WithLogger(config.WithLogger()).WithHeaders(header).WithQuerys(query).Unmarshal(resp)
+	err = config.ReqCli.New(http.MethodGet, "https://ups.youku.com/ups/get.json").WithHeaders(header).WithQuerys(query).Unmarshal(resp)
 	if err != nil {
 		return nil, err
 	}

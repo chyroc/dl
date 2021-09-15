@@ -9,7 +9,6 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"github.com/chyroc/dl/internal/config"
 	"github.com/chyroc/dl/internal/download"
-	"github.com/chyroc/gorequests"
 )
 
 func NewHaokanBaiduCom() Parser {
@@ -38,7 +37,7 @@ func (r *haokanBaiduCom) Parse(uri string) (download.Downloader, error) {
 }
 
 func (r *haokanBaiduCom) getMeta(uri string) (string, string, error) {
-	text, err := gorequests.New(http.MethodGet, uri).WithLogger(config.WithLogger()).Text()
+	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {
 		return "", "", err
 	}

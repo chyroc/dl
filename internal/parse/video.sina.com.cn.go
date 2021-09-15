@@ -9,7 +9,6 @@ import (
 	"github.com/chyroc/dl/internal/config"
 	"github.com/chyroc/dl/internal/download"
 	"github.com/chyroc/dl/internal/helper"
-	"github.com/chyroc/gorequests"
 )
 
 func NewVideoSinaComCn() Parser {
@@ -46,7 +45,7 @@ func (r *videoSinaComCn) Parse(uri string) (download.Downloader, error) {
 }
 
 func (r *videoSinaComCn) getVideoID(uri string) (int64, error) {
-	text, err := gorequests.New(http.MethodGet, uri).WithLogger(config.WithLogger()).Text()
+	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {
 		return 0, err
 	}
@@ -72,7 +71,7 @@ func (r *videoSinaComCn) getVideoMeta(originURL string, videoID int64) (*videoSi
 	header := prepareCommonHeader(originURL, nil)
 	resp := new(videoSinaComCnGetVideoMetaResp)
 
-	err := gorequests.New(http.MethodGet, uri).WithQuerys(query).WithHeaders(header).WithLogger(config.WithLogger()).Unmarshal(resp)
+	err := config.ReqCli.New(http.MethodGet, uri).WithQuerys(query).WithHeaders(header).Unmarshal(resp)
 	if err != nil {
 		return nil, err
 	} else if resp.Code != 1 {

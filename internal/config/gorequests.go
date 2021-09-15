@@ -8,6 +8,12 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+var ReqCli *gorequests.Factory
+
+func init() {
+	ReqCli = gorequests.NewFactory(gorequests.WithLogger(WithLogger()))
+}
+
 func WithLogger() gorequests.Logger {
 	logFile := WorkDir + "/log.log"
 

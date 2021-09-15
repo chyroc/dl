@@ -7,7 +7,7 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-// identify[uri, parser] -> parse[uri, meta] -> download[meta, file]
+// Run identify[uri, parser] -> parse[uri, meta] -> download[meta, file]
 func Run(c *cli.Context) error {
 	uri := c.Args().Get(0)
 	if uri == "" {

@@ -11,6 +11,8 @@ github.com/briandowns/spinner v1.16.0 h1:DFmp6hEaIx2QXXuqSJmtfSBSAjRmpGiKG6ip2Wm
 github.com/briandowns/spinner v1.16.0/go.mod h1:QOuQk7x+EaDASo80FEXwlwiA+j/PPIcX3FScO+3/ZPQ=
 github.com/chyroc/gorequests v0.26.0 h1:1g+p2L+FQNUxjHOk+i2nPM8PPvDpjl88XWsEXFg2NbE=
 github.com/chyroc/gorequests v0.26.0/go.mod h1:78PccCF4ADJbPl7DCwapqtKYl861s7lJrUKV9FWN30Q=
+github.com/chyroc/gorequests v0.27.0 h1:J3//Q1vQDf7RsELePseYYIg5bv3ZlfOylIKue7ADuYo=
+github.com/chyroc/gorequests v0.27.0/go.mod h1:78PccCF4ADJbPl7DCwapqtKYl861s7lJrUKV9FWN30Q=
 github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d h1:U+s90UTSYgptZMwQh2aRr3LuazLJIa+Pg3Kc1ylSYVY=
 github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d/go.mod h1:maD7wRr/U5Z6m/iR4s+kqSMx2CaBsrgA7czyZG/E6dU=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=

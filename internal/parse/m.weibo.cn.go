@@ -7,7 +7,6 @@ import (
 
 	"github.com/chyroc/dl/internal/config"
 	"github.com/chyroc/dl/internal/download"
-	"github.com/chyroc/gorequests"
 )
 
 func NewMobileWeiboCn() Parser {
@@ -22,7 +21,7 @@ func (r *mobileWeiboCn) Kind() string {
 
 func (r *mobileWeiboCn) Parse(uri string) (download.Downloader, error) {
 	header := prepareCommonHeader(uri, nil)
-	text, err := gorequests.New(http.MethodGet, uri).WithHeaders(header).WithLogger(config.WithLogger()).Text()
+	text, err := config.ReqCli.New(http.MethodGet, uri).WithHeaders(header).Text()
 	if err != nil {
 		return nil, err
 	}
