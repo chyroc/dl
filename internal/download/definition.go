@@ -24,15 +24,15 @@ func MayConvertDefinition(s string) Definition {
 
 func ConvertDefinition(s string) (Definition, error) {
 	switch strings.TrimSpace(strings.ToLower(s)) {
-	case "sd", "mp4sd":
+	case "sd", "mp4sd", "240p", "360p":
 		return DefinitionSD, nil
-	case "hd", "mp4hd", "mp4hd2v2":
+	case "hd", "mp4hd", "mp4hd2v2", "720p":
 		return DefinitionHD, nil
 	case "uhd":
 		return DefinitionUHD, nil
-	case "fhd", "fullhd", "full-hd":
+	case "fhd", "fullhd", "full-hd", "1080p":
 		return DefinitionFullHD, nil
-	case "4k":
+	case "4k", "2160p":
 		return Definition4K, nil
 	case "8k":
 		return Definition8K, nil

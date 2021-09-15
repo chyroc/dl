@@ -10,6 +10,7 @@ support:
 - haokan.baodu.com
 - video.sina.com.cn
 - m.weibo.cn
+- video.caixin.com
 
 ## Install
 

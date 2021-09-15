@@ -3,7 +3,6 @@ package parse
 import (
 	"fmt"
 	"net/http"
-	"net/url"
 	"regexp"
 	"strconv"
 
@@ -120,9 +119,9 @@ var (
 )
 
 func prepareCommonHeader(uri string, s map[string]string) map[string]string {
-	uriParsed, _ := url.Parse(uri)
+	// uriParsed, _ := url.Parse(uri)
 	res := map[string]string{
-		"Host":       uriParsed.Host,
+		// "Host":       uriParsed.Host,
 		"User-Agent": userAgent,
 		"Accept":     "*/*",
 		"Origin":     uri,
