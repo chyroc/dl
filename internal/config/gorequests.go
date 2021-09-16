@@ -3,6 +3,7 @@ package config
 import (
 	"context"
 	"os"
+	"time"
 
 	"github.com/chyroc/gorequests"
 	"github.com/sirupsen/logrus"
@@ -11,7 +12,11 @@ import (
 var ReqCli *gorequests.Factory
 
 func init() {
-	ReqCli = gorequests.NewFactory(gorequests.WithLogger(WithLogger()))
+	options := []gorequests.RequestOption{gorequests.WithLogger(WithLogger())}
+	if os.Getenv("IN_CI") != "" {
+		options = append(options, gorequests.WithTimeout(time.Second*10))
+	}
+	ReqCli = gorequests.NewFactory(options...)
 }
 
 func WithLogger() gorequests.Logger {
