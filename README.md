@@ -6,6 +6,7 @@ Download the video and other data of the website
 
 - 36kr.com
 - haokan.baidu.com
+- m.sohu.com
 - m.weibo.cn
 - tv.sohu.com
 - v.cctv.com
