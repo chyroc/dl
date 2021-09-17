@@ -10,6 +10,8 @@ github.com/andybalholm/cascadia v1.2.0 h1:vuRCkM5Ozh/BfmsaTm26kbjm0mIOM3yS5Ek/F5
 github.com/andybalholm/cascadia v1.2.0/go.mod h1:YCyR8vOZT9aZ1CHEd8ap0gMVm2aFgxBp0T0eFw1RUQY=
 github.com/briandowns/spinner v1.16.0 h1:DFmp6hEaIx2QXXuqSJmtfSBSAjRmpGiKG6ip2Wm/yOs=
 github.com/briandowns/spinner v1.16.0/go.mod h1:QOuQk7x+EaDASo80FEXwlwiA+j/PPIcX3FScO+3/ZPQ=
+github.com/chyroc/goexec v0.7.0 h1:6eSveUWoncJNAnfhzhgvzl+4pk0dpDht/6mu16LOnH4=
+github.com/chyroc/goexec v0.7.0/go.mod h1:465uDXBFwsWzc91uTqMJ5cSQ0tvsdbqOAjCPEUagolg=
 github.com/chyroc/gorequests v0.27.0 h1:J3//Q1vQDf7RsELePseYYIg5bv3ZlfOylIKue7ADuYo=
 github.com/chyroc/gorequests v0.27.0/go.mod h1:78PccCF4ADJbPl7DCwapqtKYl861s7lJrUKV9FWN30Q=
 github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d h1:U+s90UTSYgptZMwQh2aRr3LuazLJIa+Pg3Kc1ylSYVY=
@@ -26,6 +28,8 @@ github.com/frankban/quicktest v1.13.1/go.mod h1:NeW+ay9A/U67EYXNFA1nPE8e/tnQv/09
 github.com/google/go-cmp v0.2.1-0.20190312032427-6f77996f0c42/go.mod h1:8QqcDgzrUqlUb/G2PQTWiueGozuR1884gddMywk6iLU=
 github.com/google/go-cmp v0.5.6 h1:BKbKCqvP6I+rmFHt06ZmyQtvB8xAkWdhFyr0ZUNZcxQ=
 github.com/google/go-cmp v0.5.6/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
+github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
+github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/juju/go4 v0.0.0-20160222163258-40d72ab9641a h1:45JtCyuNYE+QN9aPuR1ID9++BQU+NMTMudHSuaK0Las=
 github.com/juju/go4 v0.0.0-20160222163258-40d72ab9641a/go.mod h1:RVHtZuvrpETIepiNUrNlih2OynoFf1eM6DGC6dloXzk=
 github.com/juju/persistent-cookiejar v0.0.0-20171026135701-d5e5a8405ef9 h1:5g7E7WtWRslad/0fq68VHgHhFRvTWo30VDaEJ5KEvEc=

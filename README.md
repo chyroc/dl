@@ -12,6 +12,7 @@ support:
 - m.weibo.cn
 - video.caixin.com
 - tv.suhu.com
+- v.cctv.com
 
 ## Install
 
