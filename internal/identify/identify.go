@@ -32,4 +32,5 @@ func init() {
 	register(parse.NewVYoukuCom())
 	register(parse.NewMobileWeiboCn())
 	register(parse.NewVideoCaixinCom())
+	register(parse.NewTvSohuCom())
 }

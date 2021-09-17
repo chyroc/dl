@@ -11,6 +11,7 @@ support:
 - video.sina.com.cn
 - m.weibo.cn
 - video.caixin.com
+- tv.suhu.com
 
 ## Install
 

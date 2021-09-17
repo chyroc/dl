@@ -33,5 +33,6 @@ func Run(c *cli.Context) error {
 		return err
 	}
 
+	fmt.Println("[done] success")
 	return nil
 }

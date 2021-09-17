@@ -29,22 +29,7 @@ func Download(url string) (string, error) {
 	}
 	defer resp.Body.Close()
 
-	fileSize := resp.ContentLength
-	progress := mpb.New(mpb.WithWidth(20))
-	bar := progress.AddBar(
-		fileSize,
-		// 进度条前的修饰
-		mpb.PrependDecorators(
-			decor.Name("[download] "),
-			decor.CountersKibiByte("% .2f / % .2f"), // 已下载数量
-			decor.Percentage(decor.WCSyncSpace),     // 进度百分比
-		),
-		// 进度条后的修饰
-		mpb.AppendDecorators(
-			decor.EwmaSpeed(decor.UnitKiB, "% .2f", 60),
-		),
-	)
-	reader := bar.ProxyReader(resp.Body)
+	reader := newProgressReaderClose(resp.ContentLength, resp.Body)
 	defer reader.Close()
 
 	if _, err := io.Copy(f, reader); err != nil {
@@ -60,4 +45,22 @@ func Download2(url, target string) error {
 		return err
 	}
 	return os.Rename(file, target)
+}
+
+func newProgressReaderClose(length int64, body io.Reader) io.ReadCloser {
+	progress := mpb.New(mpb.WithWidth(20))
+	bar := progress.AddBar(
+		length,
+		// 进度条前的修饰
+		mpb.PrependDecorators(
+			decor.Name("[download] "),
+			decor.CountersKibiByte("% .2f / % .2f"), // 已下载数量
+			decor.Percentage(decor.WCSyncSpace),     // 进度百分比
+		),
+		// 进度条后的修饰
+		mpb.AppendDecorators(
+			decor.EwmaSpeed(decor.UnitKiB, "% .2f", 60),
+		),
+	)
+	return bar.ProxyReader(body)
 }
