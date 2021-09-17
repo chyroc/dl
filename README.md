@@ -13,6 +13,7 @@ Download the video and other data of the website
 - v.youku.com
 - video.caixin.com
 - video.sina.com.cn
+- www.zhihu.com
 
 ## Install
 

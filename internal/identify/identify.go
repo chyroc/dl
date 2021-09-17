@@ -36,4 +36,5 @@ func init() {
 	register(parse.NewVCctvCom())
 	register(parse.NewA36krCom())
 	register(parse.NewMSohuCom())
+	register(parse.NewWwwZhihuCom())
 }
