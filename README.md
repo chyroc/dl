@@ -13,6 +13,7 @@ support:
 - video.caixin.com
 - tv.suhu.com
 - v.cctv.com
+- 36kr.com
 
 ## Install
 

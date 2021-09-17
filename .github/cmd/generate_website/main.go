@@ -50,7 +50,9 @@ func hostToLowerCamelCase(s string) string {
 			res = append(res, v)
 		}
 	}
-	fmt.Println(s, res, string(res))
+	if res[0] >= '0' && res[0] <= '9' {
+		res = append([]rune{'a'}, res...)
+	}
 	return string(res)
 }
 

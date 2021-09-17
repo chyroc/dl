@@ -34,4 +34,5 @@ func init() {
 	register(parse.NewVideoCaixinCom())
 	register(parse.NewTvSohuCom())
 	register(parse.NewVCctvCom())
+	register(parse.NewA36krCom())
 }
