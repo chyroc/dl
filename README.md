@@ -4,15 +4,20 @@ Download the video and other data of the website
 
 ## Support Website
 
+support 13 websites
+
 - 36kr.com
 - haokan.baidu.com
 - m.sohu.com
 - m.weibo.cn
 - tv.sohu.com
 - v.cctv.com
+- v.douyin.com
 - v.youku.com
 - video.caixin.com
 - video.sina.com.cn
+- www.douyin.com
+- www.iesdouyin.com
 - www.zhihu.com
 
 ## Install

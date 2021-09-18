@@ -9,6 +9,10 @@ var (
 	WorkDir string
 )
 
+func isInTest() bool {
+	return os.Getenv("is_in_test") != ""
+}
+
 func init() {
 	h, err := os.UserHomeDir()
 	if err != nil {

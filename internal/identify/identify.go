@@ -3,6 +3,7 @@ package identify
 import (
 	"fmt"
 	"net/url"
+	"strings"
 
 	"github.com/chyroc/dl/internal/parse"
 )
@@ -23,7 +24,10 @@ func Identify(uri string) (parse.Parser, error) {
 var parserRegister = map[string]parse.Parser{}
 
 func register(parser parse.Parser) {
-	parserRegister[parser.Kind()] = parser
+	kind := parser.Kind()
+	for _, v := range strings.Split(kind, ",") {
+		parserRegister[v] = parser
+	}
 }
 
 func init() {
@@ -37,4 +41,5 @@ func init() {
 	register(parse.NewA36krCom())
 	register(parse.NewMSohuCom())
 	register(parse.NewWwwZhihuCom())
+	register(parse.NewVDouyinCom())
 }

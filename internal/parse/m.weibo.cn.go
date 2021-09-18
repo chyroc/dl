@@ -56,3 +56,12 @@ func getMatchString(s string, reg *regexp.Regexp) string {
 	}
 	return ""
 }
+
+func getMatchStringByRegs(s string, regs []*regexp.Regexp) string {
+	for _, reg := range regs {
+		if v := getMatchString(s, reg); v != "" {
+			return v
+		}
+	}
+	return ""
+}

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"sort"
 	"strings"
@@ -24,7 +25,10 @@ func main() {
 				vvv := strings.TrimSpace(list[idx+1])
 				vvv = vvv[len("return "):]
 				vvv = vvv[1 : len(vvv)-1]
-				urls = append(urls, vvv)
+
+				for _, vvvv := range strings.Split(vvv, ",") {
+					urls = append(urls, vvvv)
+				}
 			}
 		}
 	}
@@ -37,7 +41,7 @@ func main() {
 	s1 := strings.Split(s, "## Support Website")[0] + "## Support Website"
 	s2 := "## Install" + strings.Split(s, "## Install")[1]
 
-	readme := s1 + "\n\n"
+	readme := fmt.Sprintf("%s\n\nsupport %d websites\n\n", s1, len(urls))
 	for _, v := range urls {
 		readme += "- " + v + "\n"
 	}
