@@ -33,7 +33,7 @@ func (r *haokanBaiduCom) Parse(uri string) (download.Downloader, error) {
 		URL:        videoURL,
 	}
 
-	return download.NewDownloadURL(title, title+".mp4", []*download.Specification{spec}), nil
+	return download.NewDownloadURL(title, title+".mp4", false, []*download.Specification{spec}), nil
 }
 
 func (r *haokanBaiduCom) getMeta(uri string) (string, string, error) {

@@ -4,7 +4,6 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
-	"os"
 
 	"github.com/vbauerster/mpb/v5"
 	"github.com/vbauerster/mpb/v5/decor"
@@ -12,7 +11,7 @@ import (
 
 var downloadHttpClient = http.Client{}
 
-func Download(url string) (string, error) {
+func Download(url string, chapter bool) (string, error) {
 	f, err := ioutil.TempFile("", "dl-*")
 	if err != nil {
 		return "", err
@@ -29,7 +28,7 @@ func Download(url string) (string, error) {
 	}
 	defer resp.Body.Close()
 
-	reader := newProgressReaderClose(resp.ContentLength, resp.Body)
+	reader := newProgressReaderClose(resp.ContentLength, resp.Body, chapter)
 	defer reader.Close()
 
 	if _, err := io.Copy(f, reader); err != nil {
@@ -39,18 +38,21 @@ func Download(url string) (string, error) {
 	return f.Name(), nil
 }
 
-func Download2(url, target string) error {
-	file, err := Download(url)
+func Download2(url, target string, chapter bool) error {
+	file, err := Download(url, chapter)
 	if err != nil {
 		return err
 	}
-	return os.Rename(file, target)
+	return Rename(file, target)
 }
 
-func newProgressReaderClose(length int64, body io.Reader) io.ReadCloser {
+func newProgressReaderClose(length int64, body io.Reader, chapter bool) io.ReadCloser {
 	progress := mpb.New(mpb.WithWidth(20))
-	bar := progress.AddBar(
-		length,
+	barOptions := []mpb.BarOption{}
+	if chapter {
+		barOptions = append(barOptions, mpb.BarRemoveOnComplete())
+	}
+	barOptions = append(barOptions,
 		// 进度条前的修饰
 		mpb.PrependDecorators(
 			decor.Name("[download] "),
@@ -61,6 +63,10 @@ func newProgressReaderClose(length int64, body io.Reader) io.ReadCloser {
 		mpb.AppendDecorators(
 			decor.EwmaSpeed(decor.UnitKiB, "% .2f", 60),
 		),
+	)
+	bar := progress.AddBar(
+		length,
+		barOptions...,
 	)
 	return bar.ProxyReader(body)
 }

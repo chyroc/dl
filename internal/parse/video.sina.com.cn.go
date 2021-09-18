@@ -41,7 +41,7 @@ func (r *videoSinaComCn) Parse(uri string) (download.Downloader, error) {
 		})
 	}
 
-	return download.NewDownloadURL(meta.Data.Title, meta.Data.Title+".mp4", specs), nil
+	return download.NewDownloadURL(meta.Data.Title, meta.Data.Title+".mp4", false, specs), nil
 }
 
 func (r *videoSinaComCn) getVideoID(uri string) (int64, error) {

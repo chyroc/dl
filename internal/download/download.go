@@ -4,4 +4,5 @@ type Downloader interface {
 	Title() string
 	TargetFile() string
 	Download() error
+	MultiDownload() []Downloader
 }

@@ -26,11 +26,22 @@ func Run(c *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("[download] %s\n", downloader.TargetFile())
 
-	err = downloader.Download()
-	if err != nil {
-		return err
+	if downloads := downloader.MultiDownload(); len(downloads) > 0 {
+		fmt.Printf("[chapter] %s\n", downloader.Title())
+		for _, v := range downloads {
+			fmt.Printf("[chapter][download] %s\n", v.TargetFile())
+			if err = v.Download(); err != nil {
+				return err
+			}
+		}
+	} else {
+		fmt.Printf("[download] %s\n", downloader.TargetFile())
+
+		err = downloader.Download()
+		if err != nil {
+			return err
+		}
 	}
 
 	fmt.Println("[done] success")

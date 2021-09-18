@@ -31,7 +31,7 @@ func (r *vDouyinCom) Parse(uri string) (download.Downloader, error) {
 	}
 	title := fmt.Sprintf("%s_%d", meta.ItemList[0].Desc, meta.ItemList[0].AuthorUserID)
 	spec := []*download.Specification{{URL: meta.ItemList[0].Video.PlayAddr.URLList[0]}}
-	return download.NewDownloadURL(title, title+".mp4", spec), nil
+	return download.NewDownloadURL(title, title+".mp4", false, spec), nil
 }
 
 func (r *vDouyinCom) getMeta(originURL, vid string) (*vDouyinComMetaResp, error) {

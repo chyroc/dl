@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/chyroc/dl/internal/helper"
 	"github.com/chyroc/goexec"
 	"github.com/google/uuid"
 )
@@ -37,5 +38,9 @@ func (r *downloadM3U8) Download() error {
 		return err
 	}
 
-	return os.Rename(f, r.targetFile)
+	return helper.Rename(f, r.targetFile)
+}
+
+func (r *downloadM3U8) MultiDownload() []Downloader {
+	return nil
 }

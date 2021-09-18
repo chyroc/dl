@@ -86,7 +86,7 @@ func DownloadURLs2(urls []string, dist string) error {
 			return err
 		}
 	}
-	return os.Rename(f.Name(), dist)
+	return Rename(f.Name(), dist)
 }
 
 func newProgressReaderCloseV7(p *mpb.Progress, length int64, body io.Reader) io.ReadCloser {

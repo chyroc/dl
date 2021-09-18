@@ -45,7 +45,7 @@ func (r *videoCaixinCom) Parse(uri string) (download.Downloader, error) {
 		})
 	}
 
-	return download.NewDownloadURL(title, title+".mp4", specs), nil
+	return download.NewDownloadURL(title, title+".mp4", false, specs), nil
 }
 
 func (r *videoCaixinCom) getVideoID(uri string) (string, string, error) {

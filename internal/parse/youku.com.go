@@ -36,7 +36,7 @@ func (r *vYoukuCom) Parse(uri string) (download.Downloader, error) {
 			URL:        v.Segs[0].CdnURL,
 		})
 	}
-	return download.NewDownloadURL(title, title+".mp4", specs), nil
+	return download.NewDownloadURL(title, title+".mp4", false, specs), nil
 }
 
 func (r *vYoukuCom) getVideoID(uri string) (string, error) {

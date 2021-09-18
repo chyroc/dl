@@ -4,11 +4,12 @@ import (
 	"github.com/chyroc/dl/internal/helper"
 )
 
-func NewDownloadURL(title string, targetFile string, pkgs []*Specification) Downloader {
+func NewDownloadURL(title string, targetFile string, chapter bool, pkgs []*Specification) Downloader {
 	return &downloadURL{
 		title:      title,
 		targetFile: targetFile,
 		specs:      pkgs,
+		chapter:    chapter,
 	}
 }
 
@@ -16,6 +17,7 @@ type downloadURL struct {
 	title      string
 	targetFile string
 	specs      []*Specification
+	chapter    bool
 }
 
 func (r *downloadURL) Title() string {
@@ -29,5 +31,9 @@ func (r *downloadURL) TargetFile() string {
 func (r *downloadURL) Download() error {
 	pkg := SpecificationList(r.specs).GetMax()
 
-	return helper.Download2(pkg.URL, r.TargetFile())
+	return helper.Download2(pkg.URL, r.TargetFile(), r.chapter)
+}
+
+func (r *downloadURL) MultiDownload() []Downloader {
+	return nil
 }

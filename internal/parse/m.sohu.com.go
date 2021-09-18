@@ -25,7 +25,7 @@ func (r *mSohuCom) Parse(uri string) (download.Downloader, error) {
 	}
 	title := getMatchString(text, mSohuComTitleReg) + "_" + getMatchString(text, mSohuComAuthorReg)
 	url := getMatchString(text, mSohuComUrlReg)
-	return download.NewDownloadURL(title, title+".mp4", []*download.Specification{{
+	return download.NewDownloadURL(title, title+".mp4", false, []*download.Specification{{
 		URL: url,
 	}}), nil
 }

@@ -33,7 +33,7 @@ func (r *a36krCom) Parse(uri string) (download.Downloader, error) {
 	}
 	data := resp.VideoDetail.Data
 
-	return download.NewDownloadURL(data.WidgetTitle, data.WidgetTitle+".mp4", []*download.Specification{{
+	return download.NewDownloadURL(data.WidgetTitle, data.WidgetTitle+".mp4", false, []*download.Specification{{
 		Size:       data.Filesize,
 		Definition: "",
 		URL:        data.URL,

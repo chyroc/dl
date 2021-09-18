@@ -41,7 +41,7 @@ func (r *wwwZhihuCom) Parse(uri string) (download.Downloader, error) {
 			URL:        v.PlayURL,
 		})
 	}
-	return download.NewDownloadURL(title, title+".mp4", spec), nil
+	return download.NewDownloadURL(title, title+".mp4", false, spec), nil
 }
 
 var (

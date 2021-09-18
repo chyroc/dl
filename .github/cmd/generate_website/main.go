@@ -44,7 +44,11 @@ func hostToLowerCamelCase(s string) string {
 		} else if v == '.' {
 			bigger = true
 		} else if bigger {
-			res = append(res, v+'A'-'a')
+			if v >= 'a' && v <= 'z' {
+				res = append(res, v+'A'-'a')
+			} else {
+				res = append(res, v)
+			}
 			bigger = false
 		} else {
 			res = append(res, v)

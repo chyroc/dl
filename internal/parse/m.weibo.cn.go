@@ -39,7 +39,7 @@ func (r *mobileWeiboCn) Parse(uri string) (download.Downloader, error) {
 		},
 	}
 
-	return download.NewDownloadURL(title, fmt.Sprintf("%s_%s_%s.mp4", title, user, id), specs), nil
+	return download.NewDownloadURL(title, fmt.Sprintf("%s_%s_%s.mp4", title, user, id), false, specs), nil
 }
 
 var (

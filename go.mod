@@ -13,6 +13,7 @@ require (
 	github.com/urfave/cli/v2 v2.3.0
 	github.com/vbauerster/mpb/v5 v5.4.0
 	github.com/vbauerster/mpb/v7 v7.1.5
+	rogchap.com/v8go v0.6.0
 )
 
 require (

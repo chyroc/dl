@@ -29,3 +29,7 @@ func (r *downloadURLList) TargetFile() string {
 func (r *downloadURLList) Download() error {
 	return helper.DownloadURLs2(r.urls, r.targetFile)
 }
+
+func (r *downloadURLList) MultiDownload() []Downloader {
+	return nil
+}
