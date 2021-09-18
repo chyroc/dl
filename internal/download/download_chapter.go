@@ -12,10 +12,11 @@ type Chapter struct {
 	URL   string
 }
 
-func NewDownloadChapter(dir, title string, chapters []*Chapter) Downloader {
+func NewDownloadChapter(dir, title string, ext string, chapters []*Chapter) Downloader {
 	return &downloadChapter{
 		dir:      dir,
 		title:    title,
+		ext:      ext,
 		chapters: chapters,
 	}
 }
@@ -23,6 +24,7 @@ func NewDownloadChapter(dir, title string, chapters []*Chapter) Downloader {
 type downloadChapter struct {
 	dir      string
 	title    string
+	ext      string
 	chapters []*Chapter
 }
 
@@ -40,7 +42,7 @@ func (r *downloadChapter) Download() error {
 
 func (r *downloadChapter) MultiDownload() (res []Downloader) {
 	for _, down := range r.chapters {
-		res = append(res, NewDownloadURL(fmt.Sprintf("[%s] %s", down.Pid, down.Title), r.dir+"/"+down.Title+".mp4", true, []*Specification{{URL: down.URL}}))
+		res = append(res, NewDownloadURL(fmt.Sprintf("[%s] %s", down.Pid, down.Title), r.dir+"/"+down.Title+r.ext, true, []*Specification{{URL: down.URL}}))
 	}
 	return res
 }

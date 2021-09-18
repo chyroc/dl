@@ -43,4 +43,5 @@ func init() {
 	register(parse.NewWwwZhihuCom())
 	register(parse.NewVDouyinCom())
 	register(parse.NewOpen163Com())
+	register(parse.NewWwwMissevanCom())
 }
