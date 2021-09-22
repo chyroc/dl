@@ -4,7 +4,7 @@ Download the video and other data of the website
 
 ## Support Website
 
-support 17 websites
+support 18 websites
 
 - 36kr.com
 - haokan.baidu.com
@@ -23,6 +23,7 @@ support 17 websites
 - www.iesdouyin.com
 - www.missevan.com
 - www.zhihu.com
+- y.qq.com
 
 ## Install
 

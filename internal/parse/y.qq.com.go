@@ -3,22 +3,22 @@ package parse
 import (
 	"fmt"
 
-	"github.com/chyroc/dl/internal/adapter/netease"
+	"github.com/chyroc/dl/internal/adapter/tencent"
 	"github.com/chyroc/dl/internal/download"
 )
 
-func NewMusic163Com() Parser {
-	return &music163Com{}
+func NewYQqCom() Parser {
+	return &yQqCom{}
 }
 
-type music163Com struct{}
+type yQqCom struct{}
 
-func (r *music163Com) Kind() string {
-	return "music.163.com"
+func (r *yQqCom) Kind() string {
+	return "y.qq.com"
 }
 
-func (r *music163Com) Parse(uri string) (download.Downloader, error) {
-	req, err := netease.Parse(uri)
+func (r *yQqCom) Parse(uri string) (download.Downloader, error) {
+	req, err := tencent.Parse(uri)
 	if err != nil {
 		return nil, err
 	}
