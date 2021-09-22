@@ -45,4 +45,5 @@ func init() {
 	register(parse.NewOpen163Com())
 	register(parse.NewWwwMissevanCom())
 	register(parse.NewWww333tttCom())
+	register(parse.NewMusic163Com())
 }

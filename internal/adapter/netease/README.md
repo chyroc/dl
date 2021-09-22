@@ -1,0 +1,1 @@
+copy from winterssy/music-get, in order to be used as a package
