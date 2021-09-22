@@ -60,7 +60,9 @@ func (r *tvSohuCom) Parse(uri string) (download.Downloader, error) {
 func (r *tvSohuCom) getVideoClips(originURL, vid string) (*tvSohuComGetVideoClipsResp, error) {
 	uri := fmt.Sprintf("https://hot.vrs.sohu.com/vrs_flash.action?vid=%s&ver=1&ssl=1&pflag=pch5", vid)
 	resp := new(tvSohuComGetVideoClipsResp)
-	err := config.ReqCli.New(http.MethodGet, uri).WithHeaders(prepareCommonHeader(originURL, nil)).Unmarshal(resp)
+	err := config.ReqCli.New(http.MethodGet, uri).WithHeaders(prepareCommonHeader(originURL, map[string]string{
+		"accept-language": "zh-CN,zh;q=0.9,en;q=0.8",
+	})).Unmarshal(resp)
 	if err != nil {
 		return nil, err
 	}

@@ -2,6 +2,7 @@ package config
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"time"
 
@@ -14,7 +15,8 @@ var ReqCli *gorequests.Factory
 func init() {
 	options := []gorequests.RequestOption{gorequests.WithLogger(WithLogger())}
 	if os.Getenv("IN_CI") != "" {
-		options = append(options, gorequests.WithTimeout(time.Second*10))
+		fmt.Println("in ci")
+		options = append(options, gorequests.WithTimeout(time.Second*20))
 	}
 	ReqCli = gorequests.NewFactory(options...)
 }
