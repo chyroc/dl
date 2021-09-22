@@ -99,7 +99,7 @@ func (r *{{ .LowerCamelCaseHost }}) Kind() string {
 
 func (r *{{ .LowerCamelCaseHost }}) Parse(uri string) (download.Downloader, error) {
 
-	return download.NewDownloadURL(title, title+".mp4", []*download.Specification{spec}), nil
+	return download.NewDownloadURL(title, title+".mp4", false, []*download.Specification{spec}), nil
 }
 
 `
