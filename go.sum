@@ -10,6 +10,8 @@ github.com/andybalholm/cascadia v1.2.0 h1:vuRCkM5Ozh/BfmsaTm26kbjm0mIOM3yS5Ek/F5
 github.com/andybalholm/cascadia v1.2.0/go.mod h1:YCyR8vOZT9aZ1CHEd8ap0gMVm2aFgxBp0T0eFw1RUQY=
 github.com/briandowns/spinner v1.16.0 h1:DFmp6hEaIx2QXXuqSJmtfSBSAjRmpGiKG6ip2Wm/yOs=
 github.com/briandowns/spinner v1.16.0/go.mod h1:QOuQk7x+EaDASo80FEXwlwiA+j/PPIcX3FScO+3/ZPQ=
+github.com/chyroc/go-assert v1.9.0 h1:lIUlBaMF0ENcQc7RyPrEU3fY8SX6ol2FPT7DInGe754=
+github.com/chyroc/go-assert v1.9.0/go.mod h1:BdP17hLudHz+ZZJyiMN9oVx2nINgWQeHohEsf81CdP8=
 github.com/chyroc/goexec v0.7.0 h1:6eSveUWoncJNAnfhzhgvzl+4pk0dpDht/6mu16LOnH4=
 github.com/chyroc/goexec v0.7.0/go.mod h1:465uDXBFwsWzc91uTqMJ5cSQ0tvsdbqOAjCPEUagolg=
 github.com/chyroc/gorequests v0.27.0 h1:J3//Q1vQDf7RsELePseYYIg5bv3ZlfOylIKue7ADuYo=

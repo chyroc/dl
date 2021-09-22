@@ -16,7 +16,8 @@ func init() {
 	options := []gorequests.RequestOption{gorequests.WithLogger(WithLogger())}
 	if os.Getenv("IN_CI") != "" {
 		fmt.Println("in ci")
-		options = append(options, gorequests.WithTimeout(time.Second*20))
+		options = []gorequests.RequestOption{gorequests.WithLogger(gorequests.NewStdoutLogger())}
+		options = append(options, gorequests.WithTimeout(time.Second*10))
 	}
 	ReqCli = gorequests.NewFactory(options...)
 }
