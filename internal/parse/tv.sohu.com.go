@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"net/http"
 	"regexp"
-	"sync"
 
 	"github.com/chyroc/dl/internal/config"
 	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/go-lambda"
 )
 
 func NewTvSohuCom() Parser {
@@ -31,27 +31,13 @@ func (r *tvSohuCom) Parse(uri string) (download.Downloader, error) {
 		return nil, err
 	}
 
-	urls := make([]string, len(videoMeta.Data.Su))
-	wg := new(sync.WaitGroup)
-	var finalErr error
-	for i, v := range videoMeta.Data.Su {
-		wg.Add(1)
-		go func(i int, v string) {
-			defer wg.Done()
-
-			if finalErr != nil {
-				return
-			}
-
-			url, err := r.getVideoURL(v)
-			if err != nil {
-				finalErr = err
-				return
-			}
-			urls[i] = url
-		}(i, v)
+	urls, err := lambda.New(videoMeta.Data.Su).MapArrayAsyncWithErr(func(idx int, obj interface{}) (interface{}, error) {
+		url, err := r.getVideoURL(obj.(string))
+		return url, err
+	}).ToStringSlice()
+	if err != nil {
+		return nil, err
 	}
-	wg.Wait()
 
 	title := fmt.Sprintf("%s_%d", videoMeta.Data.TvName, videoMeta.Tvid)
 	return download.NewDownloadURLList(title, title+".mp4", urls), nil
