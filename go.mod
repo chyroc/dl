@@ -7,8 +7,9 @@ require (
 	github.com/bogem/id3v2 v1.2.0
 	github.com/briandowns/spinner v1.16.0
 	github.com/chyroc/go-assert v1.9.0
+	github.com/chyroc/go-lambda v0.7.0
 	github.com/chyroc/goexec v0.7.0
-	github.com/chyroc/gorequests v0.28.0
+	github.com/chyroc/gorequests v0.29.0
 	github.com/google/uuid v1.3.0
 	github.com/sirupsen/logrus v1.8.1
 	github.com/urfave/cli/v2 v2.3.0
@@ -21,7 +22,6 @@ require (
 	github.com/VividCortex/ewma v1.2.0 // indirect
 	github.com/acarl005/stripansi v0.0.0-20180116102854-5a71ef0e047d // indirect
 	github.com/andybalholm/cascadia v1.2.0 // indirect
-	github.com/chyroc/go-lambda v0.7.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fatih/color v1.7.0 // indirect
