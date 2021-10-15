@@ -7,7 +7,7 @@ require (
 	github.com/bogem/id3v2 v1.2.0
 	github.com/briandowns/spinner v1.16.0
 	github.com/chyroc/go-assert v1.9.0
-	github.com/chyroc/go-lambda v0.7.0
+	github.com/chyroc/go-lambda v0.8.0
 	github.com/chyroc/goexec v0.7.0
 	github.com/chyroc/gorequests v0.29.0
 	github.com/google/uuid v1.3.0
