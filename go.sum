@@ -18,8 +18,8 @@ github.com/chyroc/go-lambda v0.8.0 h1:kFx6xIQkIqiMzRh1gjXO71LKAi9L7XsMIB8JfYZ9YB
 github.com/chyroc/go-lambda v0.8.0/go.mod h1:7cd+KOtAZacPGcupkv9CzYdenUDwbz4mxpQ45/NhLeQ=
 github.com/chyroc/go-ptr v1.4.0 h1:o+GxDzrmIdWaJmWU5CRWVX+31UIcQUNE4SauRWuN6O8=
 github.com/chyroc/go-ptr v1.4.0/go.mod h1:8x4QPkggRrkpveFHzb27gxqvqf2/ebzNS741UsxlbSQ=
-github.com/chyroc/goexec v0.7.0 h1:6eSveUWoncJNAnfhzhgvzl+4pk0dpDht/6mu16LOnH4=
-github.com/chyroc/goexec v0.7.0/go.mod h1:465uDXBFwsWzc91uTqMJ5cSQ0tvsdbqOAjCPEUagolg=
+github.com/chyroc/goexec v0.8.0 h1:XRbXjyAJwzx535jq1DAvQjyq2a98Un4AyVGQbVY38uE=
+github.com/chyroc/goexec v0.8.0/go.mod h1:465uDXBFwsWzc91uTqMJ5cSQ0tvsdbqOAjCPEUagolg=
 github.com/chyroc/gorequests v0.30.0 h1:S2oQ0hf+ljuG2q/vmDB3vxc+1HAuUeEthnpQ2uHueRk=
 github.com/chyroc/gorequests v0.30.0/go.mod h1:CZDj+0SZvzDtZsFKnX971eHls2bwUtGXTcmQ6by9ONA=
 github.com/chyroc/persistent-cookiejar v0.1.0 h1:F7rGmT5sShfskgbZmN9MOUJS8CwcSsm8KbErcAPUO5s=

@@ -8,7 +8,7 @@ require (
 	github.com/briandowns/spinner v1.16.0
 	github.com/chyroc/go-assert v1.9.0
 	github.com/chyroc/go-lambda v0.8.0
-	github.com/chyroc/goexec v0.7.0
+	github.com/chyroc/goexec v0.8.0
 	github.com/chyroc/gorequests v0.30.0
 	github.com/google/uuid v1.3.0
 	github.com/sirupsen/logrus v1.8.1
