@@ -14,7 +14,7 @@ require (
 	github.com/sirupsen/logrus v1.8.1
 	github.com/urfave/cli/v2 v2.3.0
 	github.com/vbauerster/mpb/v5 v5.4.0
-	github.com/vbauerster/mpb/v7 v7.3.1
+	github.com/vbauerster/mpb/v7 v7.3.2
 	rogchap.com/v8go v0.7.0
 )
 
