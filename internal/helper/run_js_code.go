@@ -7,10 +7,7 @@ import (
 )
 
 func RunJsCode(code string) (string, error) {
-	ctx, err := v8go.NewContext()
-	if err != nil {
-		return "", err
-	}
+	ctx := v8go.NewContext()
 	val, err := ctx.RunScript(fmt.Sprintf("JSON.stringify(%s)", code), "math.js")
 	if err != nil {
 		return "", err

@@ -159,4 +159,4 @@ func getMmstatEtag() string {
 	return etag[1 : len(etag)-1] // un quoto
 }
 
-var youkuComRegId = regexp.MustCompile(`v.youku.com/v_show/id_(.*?)==`)
+var youkuComRegId = regexp.MustCompile(`v.youku.com/v_show/id_(.*?)=*`)

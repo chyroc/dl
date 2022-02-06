@@ -46,7 +46,7 @@ func (r *downloadBggee) Download() error {
 		d, _ := goquery.NewDocumentFromReader(bytes.NewReader(bs))
 		textList = append(textList, d.Find(".acontent").Text())
 	}
-	return ioutil.WriteFile(r.Title(), []byte(strings.Join(textList, "\n")), 0644)
+	return ioutil.WriteFile(r.Title(), []byte(strings.Join(textList, "\n")), 0o644)
 }
 
 func (r *downloadBggee) MultiDownload() []Downloader {

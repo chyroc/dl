@@ -3,6 +3,7 @@ package identify
 import (
 	"fmt"
 	"net/url"
+	"path/filepath"
 	"strings"
 
 	"github.com/chyroc/dl/internal/parse"
@@ -13,7 +14,12 @@ func Identify(uri string) (parse.Parser, error) {
 	if err != nil {
 		return nil, fmt.Errorf("parse url: %q failed: %w", uri, err)
 	}
-	parser, ok := parserRegister[uriParsed.Host]
+	parser, ok := hostToParserRegister[uriParsed.Host]
+	if ok {
+		return parser, nil
+	}
+
+	parser, ok = fileTypeToParserRegister[strings.ToLower(filepath.Ext(uri))]
 	if ok {
 		return parser, nil
 	}
@@ -21,12 +27,19 @@ func Identify(uri string) (parse.Parser, error) {
 	return nil, nil
 }
 
-var parserRegister = map[string]parse.Parser{}
+var (
+	hostToParserRegister     = map[string]parse.Parser{}
+	fileTypeToParserRegister = map[string]parse.Parser{}
+)
 
 func register(parser parse.Parser) {
 	kind := parser.Kind()
-	for _, v := range strings.Split(kind, ",") {
-		parserRegister[v] = parser
+	if strings.HasPrefix(kind, "filetype.") {
+		fileTypeToParserRegister[strings.ToLower(kind[len("filetype"):])] = parser
+	} else {
+		for _, v := range strings.Split(kind, ",") {
+			hostToParserRegister[v] = parser
+		}
 	}
 }
 
@@ -48,4 +61,5 @@ func init() {
 	register(parse.NewMusic163Com())
 	register(parse.NewYQqCom())
 	register(parse.NewMBggeeCom())
+	register(parse.NewM3u8())
 }

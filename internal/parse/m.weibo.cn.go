@@ -57,14 +57,6 @@ func getMatchString(s string, reg *regexp.Regexp) string {
 	return ""
 }
 
-func getMatchString2(s string, reg *regexp.Regexp) (string, string) {
-	match := reg.FindStringSubmatch(s)
-	if len(match) == 3 {
-		return match[1], match[2]
-	}
-	return "", ""
-}
-
 func getMatchStringByRegs(s string, regs []*regexp.Regexp) string {
 	for _, reg := range regs {
 		if v := getMatchString(s, reg); v != "" {
