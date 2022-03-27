@@ -11,7 +11,7 @@ import (
 func main() {
 	app := &cli.App{
 		Name:   "dl",
-		Usage:  "download video for every website.",
+		Usage:  "Download Chinese Website Video, Audio, Image, Document, etc.",
 		Action: internal.Run,
 	}
 

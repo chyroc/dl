@@ -1,6 +1,6 @@
 # dl - download.
 
-Download the video and other data of the website
+Download Chinese Website Video, Audio, Image, Document, etc.
 
 ## Support Website
 
@@ -30,7 +30,7 @@ support 18 websites
 ### By Go Get
 
 ```shell
-go get github.com/chyroc/dl
+go install github.com/chyroc/dl@latest
 ```
 
 ### By Brew
