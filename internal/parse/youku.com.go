@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"regexp"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/chyroc/dl/internal/config"
@@ -48,8 +49,8 @@ func (r *vYoukuCom) Parse(uri string) (resource.Resource, error) {
 
 func (r *vYoukuCom) getVideoID(uri string) (string, error) {
 	match := youkuComRegId.FindStringSubmatch(uri)
-	if len(match) == 2 {
-		return match[1], nil
+	if len(match) == 3 {
+		return strings.TrimRight(match[1], "="), nil
 	}
 	return "", fmt.Errorf("parse %q, get video_id failed", uri)
 }
@@ -166,4 +167,4 @@ func getMmstatEtag() string {
 	return etag[1 : len(etag)-1] // un quoto
 }
 
-var youkuComRegId = regexp.MustCompile(`v.youku.com/v_show/id_(.*?)=*`)
+var youkuComRegId = regexp.MustCompile(`(?m)v\.youku\.com\/v_show\/id_(.*?)(=|$)`)

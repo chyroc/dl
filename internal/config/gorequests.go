@@ -2,7 +2,6 @@ package config
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"time"
 
@@ -14,8 +13,7 @@ var ReqCli *gorequests.Factory
 
 func init() {
 	options := []gorequests.RequestOption{gorequests.WithLogger(WithLogger())}
-	if os.Getenv("IN_CI") != "" {
-		fmt.Println("in ci")
+	if os.Getenv("IN_CI") != "" || os.Getenv("DL_DEBUG") == "true" {
 		options = []gorequests.RequestOption{gorequests.WithLogger(gorequests.NewStdoutLogger())}
 		options = append(options, gorequests.WithTimeout(time.Second*10))
 	}

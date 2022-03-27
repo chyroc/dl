@@ -33,7 +33,7 @@ func main() {
 			{
 				Name: "example",
 				Action: func(c *cli.Context) error {
-					internal.RunExample()
+					internal.RunExample(c)
 					return nil
 				},
 			},
