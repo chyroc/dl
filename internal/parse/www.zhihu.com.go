@@ -19,6 +19,10 @@ func (r *wwwZhihuCom) Kind() string {
 	return "www.zhihu.com"
 }
 
+func (r *wwwZhihuCom) ExampleURLs() []string {
+	return []string{""}
+}
+
 func (r *wwwZhihuCom) Parse(uri string) (resource.Resource, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {

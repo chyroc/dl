@@ -3,23 +3,14 @@ package internal
 import (
 	"fmt"
 	"path/filepath"
-	"strings"
 
 	"github.com/chyroc/dl/internal/download"
-	"github.com/chyroc/dl/internal/helper"
 	"github.com/chyroc/dl/internal/identify"
 	"github.com/chyroc/dl/internal/resource"
-	"github.com/urfave/cli/v2"
 )
 
 // Run identify[uri, parser] -> parse[uri, meta] -> download[meta, file]
-func Run(c *cli.Context) error {
-	// 1. arguments
-	args, err := parseArgument(c)
-	if err != nil {
-		return err
-	}
-
+func DownloadData(args *Argument) error {
 	// 2. identify
 	parser, err := identify.Identify(args.URL)
 	if err != nil {
@@ -55,28 +46,11 @@ func Run(c *cli.Context) error {
 	}
 
 	// 5. done
-	fmt.Println("[done] success")
+	fmt.Printf("[done] success\n")
 	return nil
 }
 
 type Argument struct {
 	Dest string
 	URL  string
-}
-
-func parseArgument(c *cli.Context) (*Argument, error) {
-	dest, err := helper.ResolveDirOrCurrent(strings.TrimSpace(c.String("dest")))
-	if err != nil {
-		return nil, err
-	}
-
-	uri := c.Args().Get(0)
-	if uri == "" {
-		return nil, fmt.Errorf("must set uri to download")
-	}
-
-	return &Argument{
-		Dest: dest,
-		URL:  uri,
-	}, nil
 }

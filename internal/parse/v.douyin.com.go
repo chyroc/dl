@@ -20,6 +20,14 @@ func (r *vDouyinCom) Kind() string {
 	return "v.douyin.com,www.iesdouyin.com,www.douyin.com"
 }
 
+func (r *vDouyinCom) ExampleURLs() []string {
+	return []string{
+		"https://v.douyin.com/dAAcx4R/",
+		"https://www.iesdouyin.com/share/video/7006244137951333662/?region=CN",
+		"https://www.douyin.com/video/7006244137951333662?previous_page",
+	}
+}
+
 func (r *vDouyinCom) Parse(uri string) (resource.Resource, error) {
 	vid, err := r.getVideoID(uri)
 	if err != nil {

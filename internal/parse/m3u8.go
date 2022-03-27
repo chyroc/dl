@@ -16,6 +16,10 @@ func (r *m3u8) Kind() string {
 	return "filetype.m3u8"
 }
 
+func (r *m3u8) ExampleURLs() []string {
+	return []string{""}
+}
+
 func (r *m3u8) Parse(uri string) (resource.Resource, error) {
 	x := strings.Split(uri, ".")
 	base := x[len(x)-1]

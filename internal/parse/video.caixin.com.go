@@ -21,6 +21,10 @@ func (r *videoCaixinCom) Kind() string {
 	return "video.caixin.com"
 }
 
+func (r *videoCaixinCom) ExampleURLs() []string {
+	return []string{"https://video.caixin.com/2021-09-09/101770028.html"}
+}
+
 func (r *videoCaixinCom) Parse(uri string) (resource.Resource, error) {
 	id, title, err := r.getVideoID(uri)
 	if err != nil {

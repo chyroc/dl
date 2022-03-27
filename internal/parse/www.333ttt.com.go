@@ -18,6 +18,10 @@ func (r *www333tttCom) Kind() string {
 	return "www.333ttt.com"
 }
 
+func (r *www333tttCom) ExampleURLs() []string {
+	return []string{"http://www.333ttt.com/up/yy6182865.html"}
+}
+
 func (r *www333tttCom) Parse(uri string) (resource.Resource, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {

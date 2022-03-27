@@ -30,6 +30,7 @@ func Identify(uri string) (parse.Parser, error) {
 var (
 	hostToParserRegister     = map[string]parse.Parser{}
 	fileTypeToParserRegister = map[string]parse.Parser{}
+	ExampleURLs              []string
 )
 
 func register(parser parse.Parser) {
@@ -41,6 +42,8 @@ func register(parser parse.Parser) {
 			hostToParserRegister[v] = parser
 		}
 	}
+
+	ExampleURLs = append(ExampleURLs, parser.ExampleURLs()...)
 }
 
 func init() {

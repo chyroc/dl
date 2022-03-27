@@ -19,6 +19,10 @@ func (r *vCctvCom) Kind() string {
 	return "v.cctv.com"
 }
 
+func (r *vCctvCom) ExampleURLs() []string {
+	return []string{"https://v.cctv.com/2021/09/17/VIDERZvtKr1arx2zGkZprwqR210917.shtml"}
+}
+
 func (r *vCctvCom) Parse(uri string) (resource.Resource, error) {
 	guid, err := r.getVideoID(uri)
 	if err != nil {

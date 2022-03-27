@@ -21,6 +21,10 @@ func (r *haokanBaiduCom) Kind() string {
 	return "haokan.baidu.com"
 }
 
+func (r *haokanBaiduCom) ExampleURLs() []string {
+	return []string{"https://haokan.baidu.com/v?vid=7249594116085322255"}
+}
+
 func (r *haokanBaiduCom) Parse(uri string) (resource.Resource, error) {
 	title, videoURL, err := r.getMeta(uri)
 	if err != nil {

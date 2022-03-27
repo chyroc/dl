@@ -21,6 +21,13 @@ func (r *vYoukuCom) Kind() string {
 	return "v.youku.com"
 }
 
+func (r *vYoukuCom) ExampleURLs() []string {
+	return []string{
+		"https://v.youku.com/v_show/id_XNDU1MTg1NjM2OA==",
+		"https://v.youku.com/v_show/id_XNTgwNTgzNTYwNA==.html?spm=some",
+	}
+}
+
 func (r *vYoukuCom) Parse(uri string) (resource.Resource, error) {
 	meta, err := r.getMeta(uri)
 	if err != nil {

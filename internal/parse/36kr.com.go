@@ -19,6 +19,10 @@ func (r *a36krCom) Kind() string {
 	return "36kr.com"
 }
 
+func (r *a36krCom) ExampleURLs() []string {
+	return []string{"https://36kr.com/video/1402287552562048"}
+}
+
 func (r *a36krCom) Parse(uri string) (resource.Resource, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {

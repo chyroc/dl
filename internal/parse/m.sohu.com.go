@@ -18,6 +18,10 @@ func (r *mSohuCom) Kind() string {
 	return "m.sohu.com"
 }
 
+func (r *mSohuCom) ExampleURLs() []string {
+	return []string{"https://m.sohu.com/a/490513509_120538293"}
+}
+
 func (r *mSohuCom) Parse(uri string) (resource.Resource, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {

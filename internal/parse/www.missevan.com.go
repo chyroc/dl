@@ -22,6 +22,10 @@ func (r *wwwMissevanCom) Kind() string {
 	return "www.missevan.com"
 }
 
+func (r *wwwMissevanCom) ExampleURLs() []string {
+	return []string{"https://www.missevan.com/sound/player?id=1303686"}
+}
+
 func (r *wwwMissevanCom) Parse(uri string) (resource.Resource, error) {
 	videoID, err := r.getVideoID(uri)
 	if err != nil {

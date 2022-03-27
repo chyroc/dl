@@ -49,7 +49,7 @@ func Download2(url, target string, chapter bool) error {
 func newProgressReaderClose(length int64, body io.Reader, chapter bool) io.ReadCloser {
 	progress := mpb.New(mpb.WithWidth(20))
 	barOptions := []mpb.BarOption{}
-	if chapter {
+	if true {
 		barOptions = append(barOptions, mpb.BarRemoveOnComplete())
 	}
 	barOptions = append(barOptions,

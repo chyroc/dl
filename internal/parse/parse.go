@@ -6,5 +6,6 @@ import (
 
 type Parser interface {
 	Kind() string
+	ExampleURLs() []string
 	Parse(uri string) (resource.Resource, error)
 }

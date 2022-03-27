@@ -14,6 +14,10 @@ func (r *yQqCom) Kind() string {
 	return "y.qq.com"
 }
 
+func (r *yQqCom) ExampleURLs() []string {
+	return []string{"https://y.qq.com/n/yqq/song/002Zkt5S2z8JZx.html"}
+}
+
 func (r *yQqCom) Parse(uri string) (resource.Resource, error) {
 	panic("")
 	// req, err := tencent.Parse(uri)

@@ -19,6 +19,10 @@ func (r *mobileWeiboCn) Kind() string {
 	return "m.weibo.cn"
 }
 
+func (r *mobileWeiboCn) ExampleURLs() []string {
+	return []string{""}
+}
+
 func (r *mobileWeiboCn) Parse(uri string) (resource.Resource, error) {
 	header := prepareCommonHeader(uri, nil)
 	text, err := config.ReqCli.New(http.MethodGet, uri).WithHeaders(header).Text()

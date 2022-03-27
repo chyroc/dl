@@ -22,6 +22,10 @@ func (r *mBggeeCom) Kind() string {
 	return "m.bggee.com"
 }
 
+func (r *mBggeeCom) ExampleURLs() []string {
+	return []string{""}
+}
+
 func (r *mBggeeCom) Parse(uri string) (resource.Resource, error) {
 	match := regexp.MustCompile(`https://m.bggee.com/book_(\d+)/`).FindStringSubmatch(uri)
 	if len(match) != 2 {

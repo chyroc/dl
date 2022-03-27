@@ -21,6 +21,13 @@ func (r *open163Com) Kind() string {
 	return "open.163.com"
 }
 
+func (r *open163Com) ExampleURLs() []string {
+	return []string{
+		"https://open.163.com/newview/movie/free?pid=HFD3PMIPO",
+		"https://open.163.com/movie/2010/6/D/6/M6TCSIN1U_M6TCSTQD6.html",
+	}
+}
+
 func (r *open163Com) Parse(uri string) (resource.Resource, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {

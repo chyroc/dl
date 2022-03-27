@@ -20,6 +20,10 @@ func (r *tvSohuCom) Kind() string {
 	return "tv.sohu.com"
 }
 
+func (r *tvSohuCom) ExampleURLs() []string {
+	return []string{"https://tv.sohu.com/v/MjAyMTA5MTYvbjYwMTA0NzczNC5zaHRtbA==.html"}
+}
+
 func (r *tvSohuCom) Parse(uri string) (resource.Resource, error) {
 	htmlMeta, err := r.getHTMLMeta(uri)
 	if err != nil {

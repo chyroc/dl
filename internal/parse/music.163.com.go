@@ -14,6 +14,14 @@ func (r *music163Com) Kind() string {
 	return "music.163.com"
 }
 
+func (r *music163Com) ExampleURLs() []string {
+	return []string{
+		"https://music.163.com/#/song?id=1843572582",
+		"https://music.163.com/#/album?id=132874562",
+		"https://music.163.com/#/playlist?id=156934569",
+	}
+}
+
 func (r *music163Com) Parse(uri string) (resource.Resource, error) {
 	panic("")
 	// req, err := netease.Parse(uri)
