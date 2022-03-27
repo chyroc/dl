@@ -6,7 +6,7 @@ import (
 	"regexp"
 
 	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewA36krCom() Parser {
@@ -19,7 +19,7 @@ func (r *a36krCom) Kind() string {
 	return "36kr.com"
 }
 
-func (r *a36krCom) Parse(uri string) (download.Downloader, error) {
+func (r *a36krCom) Parse(uri string) (resource.Resource, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {
 		return nil, err
@@ -33,11 +33,7 @@ func (r *a36krCom) Parse(uri string) (download.Downloader, error) {
 	}
 	data := resp.VideoDetail.Data
 
-	return download.NewDownloadURL(data.WidgetTitle, data.WidgetTitle+".mp4", false, []*download.Specification{{
-		Size:       data.Filesize,
-		Definition: "",
-		URL:        data.URL,
-	}}), nil
+	return resource.NewURL(data.WidgetTitle+".mp4", data.URL), nil
 }
 
 var a36krComInfoReg = regexp.MustCompile(`<script>window.initialState=(.*?)</script>`)

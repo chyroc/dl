@@ -6,7 +6,7 @@ import (
 	"regexp"
 
 	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 	"github.com/chyroc/go-lambda"
 )
 
@@ -20,7 +20,7 @@ func (r *tvSohuCom) Kind() string {
 	return "tv.sohu.com"
 }
 
-func (r *tvSohuCom) Parse(uri string) (download.Downloader, error) {
+func (r *tvSohuCom) Parse(uri string) (resource.Resource, error) {
 	htmlMeta, err := r.getHTMLMeta(uri)
 	if err != nil {
 		return nil, err
@@ -40,7 +40,7 @@ func (r *tvSohuCom) Parse(uri string) (download.Downloader, error) {
 	}
 
 	title := fmt.Sprintf("%s_%d", videoMeta.Data.TvName, videoMeta.Tvid)
-	return download.NewDownloadURLList(title, title+".mp4", urls), nil
+	return resource.NewURLCombineResource(title+".mp4", urls), nil
 }
 
 func (r *tvSohuCom) getVideoClips(originURL, vid string) (*tvSohuComGetVideoClipsResp, error) {

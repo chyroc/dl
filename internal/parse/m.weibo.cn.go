@@ -6,7 +6,7 @@ import (
 	"regexp"
 
 	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewMobileWeiboCn() Parser {
@@ -19,7 +19,7 @@ func (r *mobileWeiboCn) Kind() string {
 	return "m.weibo.cn"
 }
 
-func (r *mobileWeiboCn) Parse(uri string) (download.Downloader, error) {
+func (r *mobileWeiboCn) Parse(uri string) (resource.Resource, error) {
 	header := prepareCommonHeader(uri, nil)
 	text, err := config.ReqCli.New(http.MethodGet, uri).WithHeaders(header).Text()
 	if err != nil {
@@ -30,16 +30,8 @@ func (r *mobileWeiboCn) Parse(uri string) (download.Downloader, error) {
 	url := getMatchString(text, mWeiboCnUrlReg)
 	user := getMatchString(text, mWeiboCnUserReg)
 	id := getMatchString(uri, mWeiboCnIdReg)
-	fmt.Println(uri, mWeiboCnIdReg, mWeiboCnIdReg.FindStringSubmatch(uri))
-	specs := []*download.Specification{
-		{
-			Size:       0,
-			Definition: download.DefinitionHD,
-			URL:        url,
-		},
-	}
 
-	return download.NewDownloadURL(title, fmt.Sprintf("%s_%s_%s.mp4", title, user, id), false, specs), nil
+	return resource.NewURL(fmt.Sprintf("%s_%s_%s.mp4", title, user, id), url), nil
 }
 
 var (

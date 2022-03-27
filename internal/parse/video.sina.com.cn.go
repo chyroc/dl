@@ -7,8 +7,8 @@ import (
 	"strconv"
 
 	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
 	"github.com/chyroc/dl/internal/helper"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewVideoSinaComCn() Parser {
@@ -21,7 +21,7 @@ func (r *videoSinaComCn) Kind() string {
 	return "video.sina.com.cn"
 }
 
-func (r *videoSinaComCn) Parse(uri string) (download.Downloader, error) {
+func (r *videoSinaComCn) Parse(uri string) (resource.Resource, error) {
 	videoID, err := r.getVideoID(uri)
 	if err != nil {
 		return nil, err
@@ -32,16 +32,16 @@ func (r *videoSinaComCn) Parse(uri string) (download.Downloader, error) {
 	}
 
 	// 组装数据
-	specs := []*download.Specification{}
+	specs := []*resource.Specification{}
 	for _, v := range meta.Data.Videos {
-		specs = append(specs, &download.Specification{
+		specs = append(specs, &resource.Specification{
 			Size:       helper.MayStringToInt64(v.Size),
-			Definition: download.MayConvertDefinition(v.Definition),
+			Definition: resource.MayConvertDefinition(v.Definition),
 			URL:        v.DispatchResult.URL,
 		})
 	}
 
-	return download.NewDownloadURL(meta.Data.Title, meta.Data.Title+".mp4", false, specs), nil
+	return resource.NewURLWithSpecification(meta.Data.Title+".mp4", specs), nil
 }
 
 func (r *videoSinaComCn) getVideoID(uri string) (int64, error) {

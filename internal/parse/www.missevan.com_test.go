@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/chyroc/dl/internal/parse"
+	"github.com/chyroc/dl/internal/resource"
 	"github.com/chyroc/go-assert"
 )
 
@@ -15,6 +16,6 @@ func Test_wwwMissevanCom(t *testing.T) {
 		as.Nil(err)
 		as.NotNil(res)
 		as.Equal("【超酥助眠】新一助眠电台", res.Title())
-		as.Equal("[1274558] 【声控】男友音耳边数羊，伴你入眠", res.MultiDownload()[0].Title())
+		as.Equal("[1274558] 【声控】男友音耳边数羊，伴你入眠.mp3", res.(resource.ChapterResource).Chapters()[0].Title())
 	})
 }

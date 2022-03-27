@@ -6,7 +6,7 @@ import (
 	"regexp"
 
 	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewWwwZhihuCom() Parser {
@@ -19,7 +19,7 @@ func (r *wwwZhihuCom) Kind() string {
 	return "www.zhihu.com"
 }
 
-func (r *wwwZhihuCom) Parse(uri string) (download.Downloader, error) {
+func (r *wwwZhihuCom) Parse(uri string) (resource.Resource, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {
 		return nil, err
@@ -33,15 +33,15 @@ func (r *wwwZhihuCom) Parse(uri string) (download.Downloader, error) {
 	if err != nil {
 		return nil, err
 	}
-	spec := []*download.Specification{}
+	spec := []*resource.Specification{}
 	for _, v := range []wwwZhihuComDefi{resp.Playlist.Ld, resp.Playlist.Sd} {
-		spec = append(spec, &download.Specification{
+		spec = append(spec, &resource.Specification{
 			Size:       v.Size,
-			Definition: download.MayConvertDefinition(v.Format),
+			Definition: resource.MayConvertDefinition(v.Format),
 			URL:        v.PlayURL,
 		})
 	}
-	return download.NewDownloadURL(title, title+".mp4", false, spec), nil
+	return resource.NewURLWithSpecification(title+".mp4", spec), nil
 }
 
 var (

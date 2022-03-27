@@ -8,7 +8,7 @@ import (
 	"regexp"
 
 	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewVideoCaixinCom() Parser {
@@ -21,7 +21,7 @@ func (r *videoCaixinCom) Kind() string {
 	return "video.caixin.com"
 }
 
-func (r *videoCaixinCom) Parse(uri string) (download.Downloader, error) {
+func (r *videoCaixinCom) Parse(uri string) (resource.Resource, error) {
 	id, title, err := r.getVideoID(uri)
 	if err != nil {
 		return nil, err
@@ -36,16 +36,16 @@ func (r *videoCaixinCom) Parse(uri string) (download.Downloader, error) {
 	}
 
 	// 组装数据
-	specs := []*download.Specification{}
+	specs := []*resource.Specification{}
 	for _, v := range meta.PlayInfoList {
-		specs = append(specs, &download.Specification{
+		specs = append(specs, &resource.Specification{
 			Size:       v.Size,
-			Definition: download.MayConvertDefinition(v.Definition),
+			Definition: resource.MayConvertDefinition(v.Definition),
 			URL:        v.MainPlayURL,
 		})
 	}
 
-	return download.NewDownloadURL(title, title+".mp4", false, specs), nil
+	return resource.NewURLWithSpecification(title+".mp4", specs), nil
 }
 
 func (r *videoCaixinCom) getVideoID(uri string) (string, string, error) {

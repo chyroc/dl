@@ -1,4 +1,4 @@
-package download
+package resource
 
 type Specification struct {
 	Size       int64      `json:"size"`

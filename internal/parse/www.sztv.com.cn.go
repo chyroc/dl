@@ -1,7 +1,7 @@
 package parse
 
 import (
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewWwwSztvComCn() Parser {
@@ -14,7 +14,7 @@ func (r *wwwSztvComCn) Kind() string {
 	return "www.sztv.com.cn"
 }
 
-func (r *wwwSztvComCn) Parse(uri string) (download.Downloader, error) {
+func (r *wwwSztvComCn) Parse(uri string) (resource.Resource, error) {
 	panic("")
 	// text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	// if err != nil {

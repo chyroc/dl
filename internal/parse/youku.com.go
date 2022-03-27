@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewVYoukuCom() Parser {
@@ -21,22 +21,22 @@ func (r *vYoukuCom) Kind() string {
 	return "v.youku.com"
 }
 
-func (r *vYoukuCom) Parse(uri string) (download.Downloader, error) {
+func (r *vYoukuCom) Parse(uri string) (resource.Resource, error) {
 	meta, err := r.getMeta(uri)
 	if err != nil {
 		return nil, err
 	}
 
 	title := meta.Data.Video.Title
-	specs := []*download.Specification{}
+	specs := []*resource.Specification{}
 	for _, v := range meta.Data.Stream {
-		specs = append(specs, &download.Specification{
+		specs = append(specs, &resource.Specification{
 			Size:       v.Size,
-			Definition: download.MayConvertDefinition(v.StreamType),
+			Definition: resource.MayConvertDefinition(v.StreamType),
 			URL:        v.Segs[0].CdnURL,
 		})
 	}
-	return download.NewDownloadURL(title, title+".mp4", false, specs), nil
+	return resource.NewURLWithSpecification(title+".mp4", specs), nil
 }
 
 func (r *vYoukuCom) getVideoID(uri string) (string, error) {

@@ -7,8 +7,8 @@ import (
 	"regexp"
 
 	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
 	"github.com/chyroc/dl/internal/helper"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewOpen163Com() Parser {
@@ -21,7 +21,7 @@ func (r *open163Com) Kind() string {
 	return "open.163.com"
 }
 
-func (r *open163Com) Parse(uri string) (download.Downloader, error) {
+func (r *open163Com) Parse(uri string) (resource.Resource, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {
 		return nil, err
@@ -38,20 +38,16 @@ func (r *open163Com) Parse(uri string) (download.Downloader, error) {
 
 	if len(meta.State.Movie.MoiveList) == 1 {
 		m := meta.State.Movie.MoiveList[0]
-		return download.NewDownloadURL(m.Title, m.Title+".mp4", false, []*download.Specification{{URL: m.Mp4ShareURL}}), nil
+		return resource.NewURL(m.Title+".mp4", m.Mp4ShareURL), nil
 	}
 
-	chapters := []*download.Chapter{}
+	chapters := []resource.Resource{}
 	for _, v := range meta.State.Movie.MoiveList {
-		chapters = append(chapters, &download.Chapter{
-			Pid:   v.Mid,
-			P:     v.PNumber,
-			Title: fmt.Sprintf("%d_%s", v.PNumber, v.Title),
-			URL:   v.Mp4ShareURL,
-		})
+		chapters = append(chapters, resource.NewURL(fmt.Sprintf("%s_%d_%s.mp4", v.Mid, v.PNumber, v.Title), v.Mp4ShareURL))
 	}
 
-	return download.NewDownloadChapter(meta.Data[0].Title, meta.Data[0].Title, ".mp4", chapters), err
+	// return download.new(meta.Data[0].Title, meta.Data[0].Title, ".mp4", chapters), err
+	return resource.NewURLChapter(meta.Data[0].Title, chapters), err
 }
 
 var open163ComCharMidReg = regexp.MustCompile(`__NUXT__=(.*?);<`)

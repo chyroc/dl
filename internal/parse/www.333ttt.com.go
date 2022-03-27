@@ -5,7 +5,7 @@ import (
 	"regexp"
 
 	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewWww333tttCom() Parser {
@@ -18,7 +18,7 @@ func (r *www333tttCom) Kind() string {
 	return "www.333ttt.com"
 }
 
-func (r *www333tttCom) Parse(uri string) (download.Downloader, error) {
+func (r *www333tttCom) Parse(uri string) (resource.Resource, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {
 		return nil, err
@@ -26,7 +26,7 @@ func (r *www333tttCom) Parse(uri string) (download.Downloader, error) {
 
 	title := getMatchString(text, www333tttComNameReg)
 	url := getMatchString(text, www333tttComUrlReg) + ".mp3"
-	return download.NewDownloadURL(title, title+".mp3", false, []*download.Specification{{URL: url}}), nil
+	return resource.NewURL(title+".mp3", url), nil
 }
 
 var (

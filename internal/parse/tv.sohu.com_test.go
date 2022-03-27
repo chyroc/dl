@@ -14,6 +14,6 @@ func Test_tvSohuCom(t *testing.T) {
 		res, err := parse.NewTvSohuCom().Parse("https://tv.sohu.com/v/MjAyMTA5MTYvbjYwMTA0NzczNC5zaHRtbA==.html")
 		as.Nil(err)
 		as.NotNil(res)
-		as.Equal("考古笔记挖出一座城，竟改变中国三千年前历史？_288294918", res.Title())
+		as.Equal("考古笔记挖出一座城，竟改变中国三千年前历史？_288294918.mp4", res.Title())
 	})
 }

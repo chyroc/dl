@@ -1,13 +1,15 @@
 package parse
 
 import (
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"regexp"
 	"strconv"
 
-	"github.com/chyroc/dl/internal/download"
+	"github.com/PuerkitoBio/goquery"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewMBggeeCom() Parser {
@@ -20,7 +22,7 @@ func (r *mBggeeCom) Kind() string {
 	return "m.bggee.com"
 }
 
-func (r *mBggeeCom) Parse(uri string) (download.Downloader, error) {
+func (r *mBggeeCom) Parse(uri string) (resource.Resource, error) {
 	match := regexp.MustCompile(`https://m.bggee.com/book_(\d+)/`).FindStringSubmatch(uri)
 	if len(match) != 2 {
 		return nil, fmt.Errorf("匹配不到 book_id")
@@ -61,5 +63,12 @@ func (r *mBggeeCom) Parse(uri string) (download.Downloader, error) {
 		}
 	}
 
-	return download.NewDownloadBggee(bookID, title, contentURLs), nil
+	title = fmt.Sprintf("%s_%s.txt", title, bookID)
+	return resource.NewURLCombineWithOption(title, contentURLs, &resource.URLCombineOption{
+		Callback: func(url string, data []byte) []byte {
+			d, _ := goquery.NewDocumentFromReader(bytes.NewReader(data))
+			return []byte(d.Find(".acontent").Text())
+		},
+		Sep: []byte("\n"),
+	}), nil
 }

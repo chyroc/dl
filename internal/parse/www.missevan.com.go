@@ -9,7 +9,7 @@ import (
 	"sync"
 
 	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewWwwMissevanCom() Parser {
@@ -22,7 +22,7 @@ func (r *wwwMissevanCom) Kind() string {
 	return "www.missevan.com"
 }
 
-func (r *wwwMissevanCom) Parse(uri string) (download.Downloader, error) {
+func (r *wwwMissevanCom) Parse(uri string) (resource.Resource, error) {
 	videoID, err := r.getVideoID(uri)
 	if err != nil {
 		return nil, err
@@ -33,7 +33,6 @@ func (r *wwwMissevanCom) Parse(uri string) (download.Downloader, error) {
 		if err != nil {
 			return nil, err
 		} else if resp != nil {
-			chapters := []*download.Chapter{}
 			urls := make([]string, len(resp.Info.Episodes.Episode))
 			wg := new(sync.WaitGroup)
 			var finalErr error
@@ -55,16 +54,12 @@ func (r *wwwMissevanCom) Parse(uri string) (download.Downloader, error) {
 			}
 			wg.Wait()
 
+			chapters := []resource.Resource{}
 			for idx, v := range resp.Info.Episodes.Episode {
-				sid := strconv.FormatInt(v.SoundID, 10)
-				chapters = append(chapters, &download.Chapter{
-					Pid:   sid,
-					P:     idx + 1,
-					Title: v.Soundstr,
-					URL:   urls[idx],
-				})
+				// sid := strconv.FormatInt(v.SoundID, 10)
+				chapters = append(chapters, resource.NewURL(fmt.Sprintf("%s_%d.mp3", v.Soundstr, v.SoundID), urls[idx]))
 			}
-			return download.NewDownloadChapter(resp.Info.Drama.Name, resp.Info.Drama.Name, ".mp3", chapters), nil
+			return resource.NewURLChapter(resp.Info.Drama.Name, chapters), nil
 		}
 	}
 
@@ -73,7 +68,7 @@ func (r *wwwMissevanCom) Parse(uri string) (download.Downloader, error) {
 		return nil, err
 	}
 	title := fmt.Sprintf("%s_%d", resp.Info.Sound.Soundstr, resp.Info.User.ID)
-	return download.NewDownloadURL(title, title+".mp3", false, []*download.Specification{{URL: resp.Info.Sound.Soundurl}}), nil
+	return resource.NewURL(title+".mp3", resp.Info.Sound.Soundurl), nil
 }
 
 func (r *wwwMissevanCom) getVideoID(uri string) (string, error) {

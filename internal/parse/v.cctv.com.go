@@ -6,7 +6,7 @@ import (
 	"regexp"
 
 	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewVCctvCom() Parser {
@@ -19,7 +19,7 @@ func (r *vCctvCom) Kind() string {
 	return "v.cctv.com"
 }
 
-func (r *vCctvCom) Parse(uri string) (download.Downloader, error) {
+func (r *vCctvCom) Parse(uri string) (resource.Resource, error) {
 	guid, err := r.getVideoID(uri)
 	if err != nil {
 		return nil, err
@@ -29,7 +29,7 @@ func (r *vCctvCom) Parse(uri string) (download.Downloader, error) {
 		return nil, err
 	}
 
-	return download.NewDownloadM3U8(meta.Title, meta.Title+".mp4", meta.HlsURL), nil
+	return resource.NewURL(meta.Title+".mp4", meta.HlsURL), nil
 }
 
 func (r *vCctvCom) getVideoID(uri string) (string, error) {

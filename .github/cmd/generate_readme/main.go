@@ -43,7 +43,7 @@ func main() {
 
 	readme := fmt.Sprintf("%s\n\nsupport %d websites\n\n", s1, len(urls))
 	for _, v := range urls {
-		readme += "- " + v + "\n"
+		readme += fmt.Sprintf("- [%s](%s)\n", v, v)
 	}
 	readme += "\n" + s2
 	assert(ioutil.WriteFile("./README.md", []byte(readme), 0o666))

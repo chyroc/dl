@@ -7,7 +7,7 @@ import (
 	"regexp"
 
 	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewVDouyinCom() Parser {
@@ -20,7 +20,7 @@ func (r *vDouyinCom) Kind() string {
 	return "v.douyin.com,www.iesdouyin.com,www.douyin.com"
 }
 
-func (r *vDouyinCom) Parse(uri string) (download.Downloader, error) {
+func (r *vDouyinCom) Parse(uri string) (resource.Resource, error) {
 	vid, err := r.getVideoID(uri)
 	if err != nil {
 		return nil, err
@@ -30,8 +30,7 @@ func (r *vDouyinCom) Parse(uri string) (download.Downloader, error) {
 		return nil, err
 	}
 	title := fmt.Sprintf("%s_%d", meta.ItemList[0].Desc, meta.ItemList[0].AuthorUserID)
-	spec := []*download.Specification{{URL: meta.ItemList[0].Video.PlayAddr.URLList[0]}}
-	return download.NewDownloadURL(title, title+".mp4", false, spec), nil
+	return resource.NewURL(title+".mp4", meta.ItemList[0].Video.PlayAddr.URLList[0]), nil
 }
 
 func (r *vDouyinCom) getMeta(originURL, vid string) (*vDouyinComMetaResp, error) {

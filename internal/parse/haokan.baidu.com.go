@@ -8,7 +8,7 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewHaokanBaiduCom() Parser {
@@ -21,19 +21,13 @@ func (r *haokanBaiduCom) Kind() string {
 	return "haokan.baidu.com"
 }
 
-func (r *haokanBaiduCom) Parse(uri string) (download.Downloader, error) {
+func (r *haokanBaiduCom) Parse(uri string) (resource.Resource, error) {
 	title, videoURL, err := r.getMeta(uri)
 	if err != nil {
 		return nil, err
 	}
 
-	spec := &download.Specification{
-		Size:       0,
-		Definition: "",
-		URL:        videoURL,
-	}
-
-	return download.NewDownloadURL(title, title+".mp4", false, []*download.Specification{spec}), nil
+	return resource.NewURL(title+".mp4", videoURL), nil
 }
 
 func (r *haokanBaiduCom) getMeta(uri string) (string, string, error) {

@@ -3,7 +3,7 @@ package parse
 import (
 	"strings"
 
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewM3u8() Parser {
@@ -16,8 +16,8 @@ func (r *m3u8) Kind() string {
 	return "filetype.m3u8"
 }
 
-func (r *m3u8) Parse(uri string) (download.Downloader, error) {
+func (r *m3u8) Parse(uri string) (resource.Resource, error) {
 	x := strings.Split(uri, ".")
 	base := x[len(x)-1]
-	return download.NewDownloadM3U8(base, base, uri), nil
+	return resource.NewURL(base, uri), nil
 }

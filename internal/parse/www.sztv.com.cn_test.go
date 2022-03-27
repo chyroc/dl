@@ -17,4 +17,3 @@ func Test_wwwSztvComCn(t *testing.T) {
 		as.Equal("...", res.Title())
 	}
 }
-

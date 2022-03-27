@@ -5,7 +5,7 @@ import (
 	"regexp"
 
 	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func NewMSohuCom() Parser {
@@ -18,16 +18,15 @@ func (r *mSohuCom) Kind() string {
 	return "m.sohu.com"
 }
 
-func (r *mSohuCom) Parse(uri string) (download.Downloader, error) {
+func (r *mSohuCom) Parse(uri string) (resource.Resource, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {
 		return nil, err
 	}
 	title := getMatchString(text, mSohuComTitleReg) + "_" + getMatchString(text, mSohuComAuthorReg)
 	url := getMatchString(text, mSohuComUrlReg)
-	return download.NewDownloadURL(title, title+".mp4", false, []*download.Specification{{
-		URL: url,
-	}}), nil
+
+	return resource.NewURL(title+".mp4", url), nil
 }
 
 var (
