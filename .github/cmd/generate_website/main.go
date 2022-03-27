@@ -4,12 +4,17 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
+	"net/url"
 	"os"
 	"text/template"
 )
 
 func main() {
-	uri := os.Args[1]
+	URL, err := url.Parse(os.Args[1])
+	if err != nil {
+		panic(err)
+	}
+	uri := URL.Host
 	req := &generateGoCodeReq{
 		Host:               uri,
 		LowerCamelCaseHost: hostToLowerCamelCase(uri),
