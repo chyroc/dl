@@ -25,6 +25,12 @@ func RunExample(c *cli.Context) {
 }
 
 func downloadExample(url string) {
+	defer func() {
+		e := recover()
+		if e != nil {
+			fmt.Printf("[panic] download %q failed: %v\n", url, e)
+		}
+	}()
 	err := DownloadData(&Argument{Dest: "/tmp/", URL: url})
 	if err != nil {
 		fmt.Printf("[fail] download %q failed: %v\n", url, err)

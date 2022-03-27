@@ -49,7 +49,7 @@ func (r *wwwZhihuCom) Parse(uri string) (resource.Resource, error) {
 }
 
 var (
-	wwwZhihuComIDReg    = regexp.MustCompile(`src="https://video.zhihu.com/video/(.*?)\?`)
+	wwwZhihuComIDReg    = regexp.MustCompile(`"videoId":"(.*?)"`)
 	wwwZhihuComTitleReg = regexp.MustCompile(`ZVideo-title">(.*?)<`)
 )
 

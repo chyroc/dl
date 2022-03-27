@@ -56,7 +56,6 @@ dl 'https://haokan.baidu.com/v?vid=7249594116085322255'
 ## TODO
 
 - fix qq
-- fix zhihu
 - fix sztv.com.cn
 
 ## Thanks
