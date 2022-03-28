@@ -16,6 +16,9 @@ func main() {
 
 	urls := []string{}
 	for _, v := range fs {
+		if v.IsDir() {
+			continue
+		}
 		if strings.HasSuffix(v.Name(), "_test.go") {
 			continue
 		}

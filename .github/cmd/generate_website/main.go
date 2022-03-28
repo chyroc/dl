@@ -83,8 +83,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/chyroc/dl/internal/config"
-	"github.com/chyroc/dl/internal/download"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 func New{{ .TitleCamelCaseHost }}() Parser {
@@ -97,11 +96,13 @@ func (r *{{ .LowerCamelCaseHost }}) Kind() string {
 	return "{{ .Host }}"
 }
 
-func (r *{{ .LowerCamelCaseHost }}) Parse(uri string) (download.Downloader, error) {
-
-	return download.NewDownloadURL(title, title+".mp4", false, []*download.Specification{spec}), nil
+func (r *{{ .LowerCamelCaseHost }}) ExampleURLs() []string {
+	return []string{}
 }
 
+func (r *{{ .LowerCamelCaseHost }}) Parse(uri string) (resource.Resource, error) {
+	panic("")
+}
 `
 
 func generateGoTestCode(req *generateGoCodeReq) string {

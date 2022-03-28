@@ -11,6 +11,7 @@ func init() {
 	register(parse.NewMBggeeCom())
 	register(parse.NewMSohuCom())
 	register(parse.NewMobileWeiboCn())
+	register(parse.NewMpWeixinQqCom())
 	register(parse.NewMusic163Com())
 	register(parse.NewOpen163Com())
 	register(parse.NewTvSohuCom())
