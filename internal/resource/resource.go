@@ -16,4 +16,9 @@ type ChapterResource interface {
 	Chapters() []Resource
 }
 
+type Mp3Resource interface {
+	Resource
+	MP3() *MP3
+}
+
 var downloadHttpClient = http.Client{}

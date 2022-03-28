@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/chyroc/dl/internal/helper"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 type Artist struct {
@@ -45,7 +46,7 @@ type Playlist struct {
 	TrackIds []TrackId `json:"trackIds"`
 }
 
-func (s *Song) Extract() *helper.MP3 {
+func (s *Song) Extract() *resource.MP3 {
 	title, album := strings.TrimSpace(s.Name), strings.TrimSpace(s.Album.Name)
 	publishTime := time.Unix(0, s.PublishTime*1000*1000)
 	year, track := fmt.Sprintf("%d", publishTime.Year()), fmt.Sprintf("%d", s.Position)
@@ -58,7 +59,7 @@ func (s *Song) Extract() *helper.MP3 {
 	artist := strings.Join(artistList, "/")
 
 	fileName := helper.TrimInvalidFilePathChars(fmt.Sprintf("%s - %s.mp3", strings.Join(artistList, " "), title))
-	tag := helper.Tag{
+	tag := resource.Tag{
 		Title:      title,
 		Artist:     artist,
 		Album:      album,
@@ -67,7 +68,7 @@ func (s *Song) Extract() *helper.MP3 {
 		CoverImage: coverImage,
 	}
 
-	return &helper.MP3{
+	return &resource.MP3{
 		FileName: fileName,
 		Tag:      tag,
 	}

@@ -1,10 +1,10 @@
 package netease
 
 import (
-	"github.com/chyroc/dl/internal/helper"
+	"github.com/chyroc/dl/internal/resource"
 )
 
-func ExtractMP3List(songs []Song, savePath string) ([]*helper.MP3, error) {
+func ExtractMP3List(songs []Song, savePath string) ([]*resource.MP3, error) {
 	n := len(songs)
 	ids := make([]int, 0, n)
 	for _, i := range songs {
@@ -22,7 +22,7 @@ func ExtractMP3List(songs []Song, savePath string) ([]*helper.MP3, error) {
 		urlMap[i.Id] = i.Url
 	}
 
-	mp3List := make([]*helper.MP3, 0, n)
+	mp3List := make([]*resource.MP3, 0, n)
 	for _, i := range songs {
 		mp3 := i.Extract()
 		mp3.SavePath = savePath

@@ -1,6 +1,9 @@
 package parse
 
 import (
+	"fmt"
+
+	"github.com/chyroc/dl/internal/adapter/netease"
 	"github.com/chyroc/dl/internal/resource"
 )
 
@@ -23,26 +26,26 @@ func (r *music163Com) ExampleURLs() []string {
 }
 
 func (r *music163Com) Parse(uri string) (resource.Resource, error) {
+	req, err := netease.Parse(uri)
+	if err != nil {
+		return nil, err
+	}
+
+	if err = req.Do(); err != nil {
+		return nil, err
+	}
+
+	mp3List, err := req.Extract()
+	if err != nil {
+		return nil, err
+	}
+
+	if len(mp3List) == 0 {
+		return nil, fmt.Errorf("find no mp3")
+	}
+	if len(mp3List) == 1 {
+		return resource.NewMp3(mp3List[0]), nil
+	}
 	panic("")
-	// req, err := netease.Parse(uri)
-	// if err != nil {
-	// 	return nil, err
-	// }
-	//
-	// if err = req.Do(); err != nil {
-	// 	return nil, err
-	// }
-	//
-	// mp3List, err := req.Extract()
-	// if err != nil {
-	// 	return nil, err
-	// }
-	//
-	// if len(mp3List) == 0 {
-	// 	return nil, fmt.Errorf("find no mp3")
-	// }
-	// if len(mp3List) == 1 {
-	// 	return download.NewDownloadMp3(mp3List[0], "", false), nil
-	// }
 	// return download.NewDownloadMp3List(mp3List[0].SavePath, mp3List[0].SavePath, mp3List), nil
 }

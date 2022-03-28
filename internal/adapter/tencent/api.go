@@ -7,6 +7,7 @@ import (
 
 	"github.com/chyroc/dl/internal/config"
 	"github.com/chyroc/dl/internal/helper"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 const (
@@ -121,7 +122,7 @@ func (s *SongRequest) Do() error {
 	return nil
 }
 
-func (s *SongRequest) Extract() ([]*helper.MP3, error) {
+func (s *SongRequest) Extract() ([]*resource.MP3, error) {
 	return ExtractMP3List(s.Response.Data, ".")
 }
 
@@ -135,7 +136,7 @@ func (s *SingerRequest) Do() error {
 	return nil
 }
 
-func (a *SingerRequest) Extract() ([]*helper.MP3, error) {
+func (a *SingerRequest) Extract() ([]*resource.MP3, error) {
 	savePath := filepath.Join(".", helper.TrimInvalidFilePathChars(a.Response.Data.SingerName))
 	var songs []Song
 	for _, i := range a.Response.Data.List {
@@ -155,7 +156,7 @@ func (s *AlbumRequest) Do() error {
 	return nil
 }
 
-func (a *AlbumRequest) Extract() ([]*helper.MP3, error) {
+func (a *AlbumRequest) Extract() ([]*resource.MP3, error) {
 	savePath := filepath.Join(".", helper.TrimInvalidFilePathChars(a.Response.Data.GetAlbumInfo.FAlbumName))
 	return ExtractMP3List(a.Response.Data.GetSongInfo, savePath)
 }
@@ -171,8 +172,8 @@ func (s *PlaylistRequest) Do() error {
 	return nil
 }
 
-func (p *PlaylistRequest) Extract() ([]*helper.MP3, error) {
-	var res []*helper.MP3
+func (p *PlaylistRequest) Extract() ([]*resource.MP3, error) {
+	var res []*resource.MP3
 	for _, i := range p.Response.Data.CDList {
 		savePath := filepath.Join(".", helper.TrimInvalidFilePathChars(i.DissName))
 		mp3List, err := ExtractMP3List(i.SongList, savePath)

@@ -3,7 +3,7 @@ package tencent
 import (
 	"fmt"
 
-	"github.com/chyroc/dl/internal/helper"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 const (
@@ -11,7 +11,7 @@ const (
 	ThirdSongDownloadAPI = "https://v1.itooi.cn/tencent/url?id=%s&quality=%d"
 )
 
-func ExtractMP3List(songs []Song, savePath string) ([]*helper.MP3, error) {
+func ExtractMP3List(songs []Song, savePath string) ([]*resource.MP3, error) {
 	// 测试发现 guid 可以是随机字符串
 	guid := "yqq"
 	vkey, err := getVkey(guid)
@@ -20,7 +20,7 @@ func ExtractMP3List(songs []Song, savePath string) ([]*helper.MP3, error) {
 	}
 
 	br := 128
-	mp3List := make([]*helper.MP3, 0, len(songs))
+	mp3List := make([]*resource.MP3, 0, len(songs))
 	for _, i := range songs {
 		mp3 := i.Extract()
 		mp3.SavePath = savePath

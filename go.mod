@@ -10,6 +10,7 @@ require (
 	github.com/chyroc/go-lambda v0.8.0
 	github.com/chyroc/goexec v0.8.0
 	github.com/chyroc/gorequests v0.32.0
+	github.com/davecgh/go-spew v1.1.1
 	github.com/google/uuid v1.3.0
 	github.com/sirupsen/logrus v1.8.1
 	github.com/urfave/cli/v2 v2.4.0
@@ -23,7 +24,6 @@ require (
 	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/chyroc/persistent-cookiejar v0.1.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.1 // indirect
-	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fatih/color v1.7.0 // indirect
 	github.com/mattn/go-colorable v0.1.4 // indirect
 	github.com/mattn/go-isatty v0.0.13 // indirect

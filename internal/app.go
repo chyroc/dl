@@ -36,6 +36,14 @@ func DownloadData(args *Argument) error {
 				return err
 			}
 		}
+	case resource.Mp3Resource:
+		fmt.Printf("[download] %s\n", resourcer.Title())
+		if err = download.Download(args.Dest, resourcer); err != nil {
+			return err
+		}
+		if err = resourcer.MP3().UpdateTag(filepath.Join(args.Dest, resourcer.Title())); err != nil {
+			return err
+		}
 	case resource.Resource:
 		fmt.Printf("[download] %s\n", resourcer.Title())
 		if err = download.Download(args.Dest, resourcer); err != nil {

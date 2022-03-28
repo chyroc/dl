@@ -42,7 +42,7 @@ func main() {
 	}
 	content = append(content, "}")
 
-	err = ioutil.WriteFile("internal/identify/register.go", []byte(strings.Join(content, "\n")), 0644)
+	err = ioutil.WriteFile("internal/identify/register.go", []byte(strings.Join(content, "\n")), 0o644)
 	cmd_helper.Assert(err)
 }
 

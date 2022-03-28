@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/chyroc/dl/internal/helper"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 const (
@@ -49,7 +50,7 @@ type CD struct {
 	SongList []Song `json:"songlist"`
 }
 
-func (s *Song) Extract() *helper.MP3 {
+func (s *Song) Extract() *resource.MP3 {
 	title, album := strings.TrimSpace(s.Name), strings.TrimSpace(s.Album.Name)
 	// QQ音乐支持下载无版权的音乐
 	// playable := s.Action.Switch == 65537
@@ -64,7 +65,7 @@ func (s *Song) Extract() *helper.MP3 {
 	artist := strings.Join(artistList, "/")
 
 	fileName := helper.TrimInvalidFilePathChars(fmt.Sprintf("%s - %s.mp3", strings.Join(artistList, " "), title))
-	tag := helper.Tag{
+	tag := resource.Tag{
 		Title:      title,
 		Artist:     artist,
 		Album:      album,
@@ -73,7 +74,7 @@ func (s *Song) Extract() *helper.MP3 {
 		CoverImage: coverImage,
 	}
 
-	return &helper.MP3{
+	return &resource.MP3{
 		FileName: fileName,
 		Playable: true,
 		Tag:      tag,

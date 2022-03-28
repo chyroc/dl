@@ -8,6 +8,7 @@ import (
 
 	"github.com/chyroc/dl/internal/config"
 	"github.com/chyroc/dl/internal/helper"
+	"github.com/chyroc/dl/internal/resource"
 )
 
 const (
@@ -148,7 +149,7 @@ func (s *SongRequest) Do() error {
 	return nil
 }
 
-func (s *SongRequest) Extract() ([]*helper.MP3, error) {
+func (s *SongRequest) Extract() ([]*resource.MP3, error) {
 	return ExtractMP3List(s.Response.Songs, ".")
 }
 
@@ -162,7 +163,7 @@ func (s *ArtistRequest) Do() error {
 	return nil
 }
 
-func (a *ArtistRequest) Extract() ([]*helper.MP3, error) {
+func (a *ArtistRequest) Extract() ([]*resource.MP3, error) {
 	ids := make([]int, 0, len(a.Response.HotSongs))
 	for _, i := range a.Response.HotSongs {
 		ids = append(ids, i.Id)
@@ -187,7 +188,7 @@ func (s *AlbumRequest) Do() error {
 	return nil
 }
 
-func (a *AlbumRequest) Extract() ([]*helper.MP3, error) {
+func (a *AlbumRequest) Extract() ([]*resource.MP3, error) {
 	savePath := filepath.Join(".", helper.TrimInvalidFilePathChars(a.Response.Album.Name))
 	for i := range a.Response.Songs {
 		a.Response.Songs[i].PublishTime = a.Response.Album.PublishTime
@@ -205,7 +206,7 @@ func (s *PlaylistRequest) Do() error {
 	return nil
 }
 
-func (p *PlaylistRequest) Extract() ([]*helper.MP3, error) {
+func (p *PlaylistRequest) Extract() ([]*resource.MP3, error) {
 	ids := make([]int, 0, len(p.Response.Playlist.TrackIds))
 	for _, i := range p.Response.Playlist.TrackIds {
 		ids = append(ids, i.Id)
