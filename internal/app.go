@@ -2,6 +2,7 @@ package internal
 
 import (
 	"fmt"
+	"net/url"
 
 	"github.com/chyroc/dl/internal/download"
 	"github.com/chyroc/dl/internal/identify"
@@ -9,6 +10,12 @@ import (
 
 // Run identify[uri, parser] -> parse[uri, meta] -> download[meta, file]
 func DownloadData(args *Argument) error {
+	// 1. host
+	URL, err := url.Parse(args.URL)
+	if err != nil {
+		return err
+	}
+
 	// 2. identify
 	parser, err := identify.Identify(args.URL)
 	if err != nil {
@@ -16,7 +23,8 @@ func DownloadData(args *Argument) error {
 	} else if parser == nil {
 		return fmt.Errorf("unsupport %q", args.URL)
 	}
-	fmt.Printf("[meta] %s\n", parser.Kind())
+	parser.Kind()
+	fmt.Printf("[%s] resource kind=%s\n", URL.Host, parser.Kind())
 
 	// 3. parse
 	resourcer, err := parser.Parse(args.URL)
@@ -25,12 +33,12 @@ func DownloadData(args *Argument) error {
 	}
 
 	// 4. download
-	if err := download.Download(args.Dest, resourcer); err != nil {
+	if err := download.Download(args.Dest, "["+URL.Host+"]", resourcer); err != nil {
 		return err
 	}
 
 	// 5. done
-	fmt.Printf("[done] success\n")
+	fmt.Printf("[%s] download %q success\n", URL.Host, args.URL)
 	return nil
 }
 

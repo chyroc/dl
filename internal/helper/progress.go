@@ -18,7 +18,7 @@ func (r *ProgressReader) SetTotal(n int64, complete bool) {
 	r.bar.SetTotal(n, complete)
 }
 
-func NewProgressReaderClose(length int64, body io.Reader, chapter bool) *ProgressReader {
+func NewProgressReaderClose(prefix string, length int64, body io.Reader, chapter bool) *ProgressReader {
 	progress := mpb.New(mpb.WithWidth(20))
 	barOptions := []mpb.BarOption{}
 	if true {
@@ -27,7 +27,7 @@ func NewProgressReaderClose(length int64, body io.Reader, chapter bool) *Progres
 	barOptions = append(barOptions,
 		// 进度条前的修饰
 		mpb.PrependDecorators(
-			decor.Name("[download] "),
+			decor.Name(prefix),
 			decor.CountersKibiByte("% .2f / % .2f"), // 已下载数量
 			decor.Percentage(decor.WCSyncSpace),     // 进度百分比
 		),

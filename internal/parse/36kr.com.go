@@ -20,7 +20,7 @@ func (r *a36krCom) Kind() string {
 }
 
 func (r *a36krCom) ExampleURLs() []string {
-	return []string{"https://36kr.com/video/1402287552562048"}
+	return []string{"https://36kr.com/video/1673124114052352"}
 }
 
 func (r *a36krCom) Parse(uri string) (resource.Resource, error) {

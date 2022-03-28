@@ -17,8 +17,6 @@ github.com/chyroc/go-lambda v0.8.0 h1:kFx6xIQkIqiMzRh1gjXO71LKAi9L7XsMIB8JfYZ9YB
 github.com/chyroc/go-lambda v0.8.0/go.mod h1:7cd+KOtAZacPGcupkv9CzYdenUDwbz4mxpQ45/NhLeQ=
 github.com/chyroc/go-ptr v1.4.0 h1:o+GxDzrmIdWaJmWU5CRWVX+31UIcQUNE4SauRWuN6O8=
 github.com/chyroc/go-ptr v1.4.0/go.mod h1:8x4QPkggRrkpveFHzb27gxqvqf2/ebzNS741UsxlbSQ=
-github.com/chyroc/goexec v0.8.0 h1:XRbXjyAJwzx535jq1DAvQjyq2a98Un4AyVGQbVY38uE=
-github.com/chyroc/goexec v0.8.0/go.mod h1:465uDXBFwsWzc91uTqMJ5cSQ0tvsdbqOAjCPEUagolg=
 github.com/chyroc/gorequests v0.32.0 h1:+UVJd/qA/b0W0/gzh9K+VGkpTqctrjuVvD2rB6hvlwI=
 github.com/chyroc/gorequests v0.32.0/go.mod h1:CZDj+0SZvzDtZsFKnX971eHls2bwUtGXTcmQ6by9ONA=
 github.com/chyroc/persistent-cookiejar v0.1.0 h1:F7rGmT5sShfskgbZmN9MOUJS8CwcSsm8KbErcAPUO5s=
@@ -36,8 +34,6 @@ github.com/frankban/quicktest v1.13.1 h1:xVm/f9seEhZFL9+n5kv5XLrGwy6elc4V9v/XFY2
 github.com/frankban/quicktest v1.13.1/go.mod h1:NeW+ay9A/U67EYXNFA1nPE8e/tnQv/09mUdL/ijj8og=
 github.com/google/go-cmp v0.5.6 h1:BKbKCqvP6I+rmFHt06ZmyQtvB8xAkWdhFyr0ZUNZcxQ=
 github.com/google/go-cmp v0.5.6/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
-github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
-github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pretty v0.2.1/go.mod h1:ipq/a2n7PKx3OHsz4KJII5eveXtPO4qwEXGdVfWzfnI=
 github.com/kr/pretty v0.3.0 h1:WgNl7dwNpEZ6jJ9k1snq4pZsg7DOEN8hP9Xw0Tsjwk0=

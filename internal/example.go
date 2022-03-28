@@ -42,8 +42,8 @@ func downloadExample(url string) {
 	}()
 	err := DownloadData(&Argument{Dest: "/tmp/", URL: url})
 	if err != nil {
-		fmt.Printf("[fail] download %q failed: %v\n", url, err)
+		fmt.Printf(" == [example] download %q failed: %v\n", url, err)
 	} else {
-		fmt.Printf("[succ] download %q success\n", url)
+		fmt.Printf(" == [example] download %q success\n", url)
 	}
 }

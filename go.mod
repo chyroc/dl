@@ -8,10 +8,9 @@ require (
 	github.com/briandowns/spinner v1.18.1
 	github.com/chyroc/go-assert v1.9.0
 	github.com/chyroc/go-lambda v0.8.0
-	github.com/chyroc/goexec v0.8.0
 	github.com/chyroc/gorequests v0.32.0
 	github.com/davecgh/go-spew v1.1.1
-	github.com/google/uuid v1.3.0
+	github.com/mattn/go-runewidth v0.0.13
 	github.com/sirupsen/logrus v1.8.1
 	github.com/urfave/cli/v2 v2.4.0
 	github.com/vbauerster/mpb/v7 v7.4.1
@@ -27,7 +26,6 @@ require (
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
-	github.com/mattn/go-runewidth v0.0.13 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
