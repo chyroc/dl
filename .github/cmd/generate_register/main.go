@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	dir := "internal/parse/"
+	dir := "pkgs/parse/"
 	fs, err := ioutil.ReadDir(dir)
 	cmd_helper.Assert(err)
 
@@ -32,7 +32,7 @@ func main() {
 		"package identify",
 		"",
 		"import (",
-		"	\"github.com/chyroc/dl/internal/parse\"",
+		"	\"github.com/chyroc/dl/pkgs/parse\"",
 		")",
 		"",
 		"func init() {",
@@ -42,7 +42,7 @@ func main() {
 	}
 	content = append(content, "}")
 
-	err = ioutil.WriteFile("internal/identify/register.go", []byte(strings.Join(content, "\n")), 0o644)
+	err = ioutil.WriteFile("pkgs/identify/register.go", []byte(strings.Join(content, "\n")), 0o644)
 	cmd_helper.Assert(err)
 }
 

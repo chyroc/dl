@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/chyroc/dl/internal"
-	"github.com/chyroc/dl/internal/helper"
+	"github.com/chyroc/dl/pkgs"
+	"github.com/chyroc/dl/pkgs/helper"
 	"github.com/urfave/cli/v2"
 )
 
@@ -27,13 +27,13 @@ func main() {
 			if err != nil {
 				return err
 			}
-			return internal.DownloadData(args)
+			return pkgs.DownloadData(args)
 		},
 		Commands: []*cli.Command{
 			{
 				Name: "example",
 				Action: func(c *cli.Context) error {
-					internal.RunExample(c)
+					pkgs.RunExample(c)
 					return nil
 				},
 			},
@@ -45,7 +45,7 @@ func main() {
 	}
 }
 
-func parseArgument(c *cli.Context) (*internal.Argument, error) {
+func parseArgument(c *cli.Context) (*pkgs.Argument, error) {
 	dest, err := helper.ResolveDirOrCurrent(strings.TrimSpace(c.String("dest")))
 	if err != nil {
 		return nil, err
@@ -56,7 +56,7 @@ func parseArgument(c *cli.Context) (*internal.Argument, error) {
 		return nil, fmt.Errorf("must set uri to download")
 	}
 
-	return &internal.Argument{
+	return &pkgs.Argument{
 		Dest: dest,
 		URL:  uri,
 	}, nil

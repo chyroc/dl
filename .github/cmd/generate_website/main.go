@@ -24,10 +24,10 @@ func main() {
 
 	code := generateGoCode(req)
 
-	cmd_helper.Assert(ioutil.WriteFile(fmt.Sprintf("./internal/parse/%s.go", uri), []byte(code), 0o666))
+	cmd_helper.Assert(ioutil.WriteFile(fmt.Sprintf("./pkgs/parse/%s.go", uri), []byte(code), 0o666))
 
 	code = generateGoTestCode(req)
-	cmd_helper.Assert(ioutil.WriteFile(fmt.Sprintf("./internal/parse/%s_test.go", uri), []byte(code), 0o666))
+	cmd_helper.Assert(ioutil.WriteFile(fmt.Sprintf("./pkgs/parse/%s_test.go", uri), []byte(code), 0o666))
 }
 
 func hostToTitleCamelCase(s string) string {
@@ -83,7 +83,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/chyroc/dl/internal/resource"
+	"github.com/chyroc/dl/pkgs/resource"
 )
 
 func New{{ .TitleCamelCaseHost }}() Parser {
@@ -119,7 +119,7 @@ var goTestTemplate = `package parse_test
 import (
 	"testing"
 
-	"github.com/chyroc/dl/internal/parse"
+	"github.com/chyroc/dl/pkgs/parse"
 	"github.com/chyroc/go-assert"
 )
 

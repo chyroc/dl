@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	dir := "./internal/parse/"
+	dir := "./pkgs/parse/"
 	fs, err := ioutil.ReadDir(dir)
 	cmd_helper.Assert(err)
 
