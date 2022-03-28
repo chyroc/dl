@@ -24,6 +24,7 @@ func (r *mpWeixinQqCom) Kind() string {
 func (r *mpWeixinQqCom) ExampleURLs() []string {
 	return []string{
 		"https://mp.weixin.qq.com/s/1Li7fFUu49XQoo6-dNwnmQ",
+		"https://mp.weixin.qq.com/s/xDNx_qGrrUoHK_HXBiKI5w",
 	}
 }
 
@@ -43,32 +44,74 @@ func (r *mpWeixinQqCom) Parse(uri string) (resource.Resource, error) {
 		title = strings.TrimSpace(doc.Find("meta[property='twitter:title']").AttrOr("content", ""))
 	}
 
-	vid := getMatchString(text, mpvidReg)
+	videoType := getMatchString(text, videoTypeReg)
 	mid := getMatchString(text, midReg)
 	biz := getMatchString(text, bizReg)
-	info, err := r.getVideoInfo(biz, mid, vid)
-	if err != nil {
-		return nil, err
-	}
 
-	spec := []*resource.Specification{}
-	for _, v := range info.URLInfo {
-		spec = append(spec, &resource.Specification{
-			Size:       int64(v.Filesize),
-			Definition: resource.MayConvertDefinition(v.VideoQualityWording),
-			URL:        v.URL,
-		})
+	switch videoType {
+	case "1":
+		videos, err := r.getType1Video(text)
+		if err != nil {
+			return nil, err
+		}
+		return resource.NewURLChapter(title, videos), nil
+	case "2":
+		videos, err := r.getType2Video(biz, mid, text)
+		if err != nil {
+			return nil, err
+		}
+		return resource.NewURLChapter(title, videos), nil
+	default:
+		return nil, fmt.Errorf("unknown video type: %s", videoType)
 	}
+}
 
-	return resource.NewURLChapter(title, []resource.Resource{
-		resource.NewURLWithSpecification(info.Title+".mp4", spec),
-	}), nil
+func (r *mpWeixinQqCom) getType2Video(biz, mid, text string) (res []resource.Resource, err error) {
+	matches := mpvidType2Reg.FindAllStringSubmatch(text, -1)
+	for _, match := range matches {
+		vid := match[1]
+		info, err := r.getVideoInfo(biz, mid, vid)
+		if err != nil {
+			return nil, err
+		}
+
+		spec := []*resource.Specification{}
+		for _, v := range info.URLInfo {
+			spec = append(spec, &resource.Specification{
+				Size:       int64(v.Filesize),
+				Definition: resource.MayConvertDefinition(v.VideoQualityWording),
+				URL:        v.URL,
+			})
+		}
+
+		res = append(res, resource.NewURLWithSpecification(info.Title+".mp4", spec))
+	}
+	return res, nil
+}
+
+func (r *mpWeixinQqCom) getType1Video(text string) (res []resource.Resource, err error) {
+	matches := vidType1Reg.FindAllStringSubmatch(text, -1)
+	for _, match := range matches {
+		if match[1] == "" {
+			continue
+		}
+		vid := match[1]
+		video, err := NewVQqCom().Parse(fmt.Sprintf("https://v.qq.com/txp/iframe/player.html?vid=%s", vid))
+		if err != nil {
+			return nil, err
+		}
+
+		res = append(res, video)
+	}
+	return res, nil
 }
 
 var (
-	mpvidReg = regexp.MustCompile(`data-mpvid="(.*?)"`)
-	bizReg   = regexp.MustCompile(`var biz = "(.*?)"`)
-	midReg   = regexp.MustCompile(`var mid = "(.*?)"`)
+	videoTypeReg  = regexp.MustCompile(`data-vidtype="(.*?)"`)
+	vidType1Reg   = regexp.MustCompile(`vid=(.*?)"`)
+	mpvidType2Reg = regexp.MustCompile(`data-mpvid="(.*?)"`)
+	bizReg        = regexp.MustCompile(`var biz = "(.*?)"`)
+	midReg        = regexp.MustCompile(`var mid = "(.*?)"`)
 )
 
 func (r *mpWeixinQqCom) getVideoInfo(biz, mid, vid string) (*getVideoInfoResp, error) {

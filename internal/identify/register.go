@@ -17,6 +17,7 @@ func init() {
 	register(parse.NewTvSohuCom())
 	register(parse.NewVCctvCom())
 	register(parse.NewVDouyinCom())
+	register(parse.NewVQqCom())
 	register(parse.NewVYoukuCom())
 	register(parse.NewVideoCaixinCom())
 	register(parse.NewVideoSinaComCn())

@@ -37,5 +37,9 @@ func ConvertDefinition(s string) (Definition, error) {
 	case "8k":
 		return Definition8K, nil
 	}
+	switch {
+	case strings.Contains(s, "高清"):
+		return DefinitionHD, nil
+	}
 	return "", fmt.Errorf("%q is invalid definition", s)
 }

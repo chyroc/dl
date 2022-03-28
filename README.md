@@ -4,7 +4,7 @@ Download Chinese Website Video, Audio, Image, Document, etc.
 
 ## Support Website
 
-support 22 websites
+support 23 websites
 
 - [36kr.com](36kr.com)
 - [filetype.m3u8](filetype.m3u8)
@@ -18,6 +18,7 @@ support 22 websites
 - [tv.sohu.com](tv.sohu.com)
 - [v.cctv.com](v.cctv.com)
 - [v.douyin.com](v.douyin.com)
+- [v.qq.com](v.qq.com)
 - [v.youku.com](v.youku.com)
 - [video.caixin.com](video.caixin.com)
 - [video.sina.com.cn](video.sina.com.cn)
