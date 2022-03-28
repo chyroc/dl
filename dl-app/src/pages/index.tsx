@@ -1,6 +1,7 @@
 import {Alert, Button, Form, Input} from 'antd';
 import axios from "axios";
 import {useEffect, useState} from "react";
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 
 
 const saveURL = async (url: string): Promise<{ err: string, task_id: string }> => {
@@ -11,7 +12,7 @@ const saveURL = async (url: string): Promise<{ err: string, task_id: string }> =
   return {err, task_id}
 }
 
-const getTaskResult = async (task_id: string): Promise<{ err: string, status: 'finished' }> => {
+const getTaskResult = async (task_id: string): Promise<{ err: string, status: 'running' | 'error' | 'success' }> => {
   const res = await axios.get(`http://localhost:12432/api/get_task?task_id=${task_id}`)
   const {err, status} = res.data
   return {err, status}
@@ -30,13 +31,13 @@ const Demo = () => {
 
     const interval = setInterval(async () => {
       const {err, status} = await getTaskResult(taskID)
+      setStatus(status)
       if (err) {
         setErr(err)
         clearInterval(interval)
         return
       }
-      setStatus(status)
-      if (status === 'finished') {
+      if (status === 'success' || status == 'error') {
         setLoading(false)
         clearInterval(interval)
         return
@@ -55,12 +56,24 @@ const Demo = () => {
   return (
     <div>
       {
-        err && err.length > 0 && <Alert message={err} type="error" style={{marginBottom:20}}/>
+        err && err.length > 0 && <Alert message={err} type="error" style={{marginBottom: 20}}/>
+      }
+      {
+        !err && loading && <Alert message={`正在保存，请稍后...`} type="info" style={{marginBottom: 20}}/>
+      }
+      {
+        !err && status && status == 'success' && <Alert message="下载成功" type="success" style={{marginBottom: 20}}/>
       }
 
       <Form
         name="basic"
         onFinish={onFinish}
+        onChange={() => {
+          setErr('')
+          setTaskID('')
+          setLoading(false)
+          setStatus('')
+        }}
         autoComplete="off"
       >
         <Form.Item
