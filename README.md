@@ -56,9 +56,6 @@ dl 'https://haokan.baidu.com/v?vid=7249594116085322255'
 ## TODO
 
 - fix qq
-- fix sztv.com.cn
-- fix zero length
-- 
 
 ## Thanks
 

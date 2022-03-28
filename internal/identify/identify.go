@@ -45,24 +45,3 @@ func register(parser parse.Parser) {
 
 	ExampleURLs = append(ExampleURLs, parser.ExampleURLs()...)
 }
-
-func init() {
-	register(parse.NewVideoSinaComCn())
-	register(parse.NewHaokanBaiduCom())
-	register(parse.NewVYoukuCom())
-	register(parse.NewMobileWeiboCn())
-	register(parse.NewVideoCaixinCom())
-	register(parse.NewTvSohuCom())
-	register(parse.NewVCctvCom())
-	register(parse.NewA36krCom())
-	register(parse.NewMSohuCom())
-	register(parse.NewWwwZhihuCom())
-	register(parse.NewVDouyinCom())
-	register(parse.NewOpen163Com())
-	register(parse.NewWwwMissevanCom())
-	register(parse.NewWww333tttCom())
-	register(parse.NewMusic163Com())
-	register(parse.NewYQqCom())
-	register(parse.NewMBggeeCom())
-	register(parse.NewM3u8())
-}

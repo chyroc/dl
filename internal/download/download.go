@@ -17,6 +17,8 @@ type Downloader interface {
 }
 
 func Download(dest string, resource resource.Resource) error {
+	_ = os.MkdirAll(dest, os.ModePerm)
+
 	tempFile := filepath.Join(dest, resource.Title()+".tmp")
 	f, err := os.OpenFile(tempFile, os.O_CREATE|os.O_WRONLY, 0o644)
 	if err != nil {
