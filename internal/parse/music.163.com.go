@@ -3,7 +3,7 @@ package parse
 import (
 	"fmt"
 
-	"github.com/chyroc/dl/internal/adapter/netease"
+	"github.com/chyroc/dl/internal/parse/adapter/netease"
 	"github.com/chyroc/dl/internal/resource"
 )
 

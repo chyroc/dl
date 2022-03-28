@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/chyroc/dl/internal/adapter/common"
+	"github.com/chyroc/dl/internal/parse/adapter/common"
 )
 
 const (

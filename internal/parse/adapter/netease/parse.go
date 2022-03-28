@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/chyroc/dl/internal/adapter/common"
+	"github.com/chyroc/dl/internal/parse/adapter/common"
 )
 
 var UrlPattern = regexp.MustCompile("/(song|artist|album|playlist)\\?id=(\\d+)")
