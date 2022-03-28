@@ -7,13 +7,14 @@ import (
 	"net/url"
 	"os"
 	"text/template"
+
+	"github.com/chyroc/dl/.github/cmd/cmd_helper"
 )
 
 func main() {
 	URL, err := url.Parse(os.Args[1])
-	if err != nil {
-		panic(err)
-	}
+	cmd_helper.Assert(err)
+
 	uri := URL.Host
 	req := &generateGoCodeReq{
 		Host:               uri,
@@ -23,16 +24,10 @@ func main() {
 
 	code := generateGoCode(req)
 
-	assert(ioutil.WriteFile(fmt.Sprintf("./internal/parse/%s.go", uri), []byte(code), 0o666))
+	cmd_helper.Assert(ioutil.WriteFile(fmt.Sprintf("./internal/parse/%s.go", uri), []byte(code), 0o666))
 
 	code = generateGoTestCode(req)
-	assert(ioutil.WriteFile(fmt.Sprintf("./internal/parse/%s_test.go", uri), []byte(code), 0o666))
-}
-
-func assert(err error) {
-	if err != nil {
-		panic(err)
-	}
+	cmd_helper.Assert(ioutil.WriteFile(fmt.Sprintf("./internal/parse/%s_test.go", uri), []byte(code), 0o666))
 }
 
 func hostToTitleCamelCase(s string) string {
@@ -73,10 +68,10 @@ type generateGoCodeReq struct {
 
 func generateGoCode(req *generateGoCodeReq) string {
 	t, err := template.New("").Parse(goTemplate)
-	assert(err)
+	cmd_helper.Assert(err)
 	buf := new(bytes.Buffer)
 	err = t.Execute(buf, req)
-	assert(err)
+	cmd_helper.Assert(err)
 	return buf.String()
 }
 
@@ -111,10 +106,10 @@ func (r *{{ .LowerCamelCaseHost }}) Parse(uri string) (download.Downloader, erro
 
 func generateGoTestCode(req *generateGoCodeReq) string {
 	t, err := template.New("").Parse(goTestTemplate)
-	assert(err)
+	cmd_helper.Assert(err)
 	buf := new(bytes.Buffer)
 	err = t.Execute(buf, req)
-	assert(err)
+	cmd_helper.Assert(err)
 	return buf.String()
 }
 

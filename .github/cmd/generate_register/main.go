@@ -4,14 +4,15 @@ import (
 	"io/ioutil"
 	"sort"
 	"strings"
+
+	"github.com/chyroc/dl/.github/cmd/cmd_helper"
 )
 
 func main() {
 	dir := "internal/parse/"
 	fs, err := ioutil.ReadDir(dir)
-	if err != nil {
-		panic(err)
-	}
+	cmd_helper.Assert(err)
+
 	funcNames := []string{}
 	for _, f := range fs {
 		if f.IsDir() {
@@ -27,15 +28,6 @@ func main() {
 	}
 	sort.Strings(funcNames)
 
-	// package identify
-	//
-	// import (
-	//	"github.com/chyroc/dl/internal/parse"
-	// )
-	//
-	// func init() {
-	//	register(parse.NewA36krCom())
-	// }
 	content := []string{
 		"package identify",
 		"",
@@ -51,17 +43,13 @@ func main() {
 	content = append(content, "}")
 
 	err = ioutil.WriteFile("internal/identify/register.go", []byte(strings.Join(content, "\n")), 0644)
-	if err != nil {
-		panic(err)
-	}
+	cmd_helper.Assert(err)
 }
 
 func handle(path string) string {
 	bs, err := ioutil.ReadFile(path)
-	if err != nil {
-		panic(err)
-	}
-	// func NewYQqCom() Parser {
+	cmd_helper.Assert(err)
+
 	s := string(bs)
 	for _, v := range strings.Split(s, "\n") {
 		v = strings.TrimSpace(v)

@@ -5,19 +5,22 @@ import (
 	"io/ioutil"
 	"sort"
 	"strings"
+
+	"github.com/chyroc/dl/.github/cmd/cmd_helper"
 )
 
 func main() {
 	dir := "./internal/parse/"
 	fs, err := ioutil.ReadDir(dir)
-	assert(err)
+	cmd_helper.Assert(err)
+
 	urls := []string{}
 	for _, v := range fs {
 		if strings.HasSuffix(v.Name(), "_test.go") {
 			continue
 		}
 		bs, err := ioutil.ReadFile(dir + "" + v.Name())
-		assert(err)
+		cmd_helper.Assert(err)
 		list := strings.Split(string(bs), "\n")
 		for idx, vv := range list {
 			vv = strings.TrimSpace(vv)
@@ -36,7 +39,8 @@ func main() {
 	sort.Strings(urls)
 
 	bs, err := ioutil.ReadFile("./README.md")
-	assert(err)
+	cmd_helper.Assert(err)
+
 	s := string(bs)
 	s1 := strings.Split(s, "## Support Website")[0] + "## Support Website"
 	s2 := "## Install" + strings.Split(s, "## Install")[1]
@@ -46,11 +50,5 @@ func main() {
 		readme += fmt.Sprintf("- [%s](%s)\n", v, v)
 	}
 	readme += "\n" + s2
-	assert(ioutil.WriteFile("./README.md", []byte(readme), 0o666))
-}
-
-func assert(err error) {
-	if err != nil {
-		panic(err)
-	}
+	cmd_helper.Assert(ioutil.WriteFile("./README.md", []byte(readme), 0o666))
 }
