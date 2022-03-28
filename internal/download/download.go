@@ -1,6 +1,7 @@
 package download
 
 import (
+	"fmt"
 	"io"
 	"os"
 	"path/filepath"
@@ -9,14 +10,44 @@ import (
 	"github.com/chyroc/dl/internal/resource"
 )
 
-type Downloader interface {
-	Title() string
-	TargetFile() string
-	Download() error
-	MultiDownload() []Downloader
+func Download(dest string, resourcer resource.Resource) error {
+	// 4. download
+	switch resourcer := resourcer.(type) {
+	case resource.ChapterResource:
+		fmt.Printf("[chapter] %s\n", resourcer.Title())
+		for _, v := range resourcer.Chapters() {
+			fmt.Printf("[chapter][download] %s\n", v.Title())
+			if err := downloadAtom(filepath.Join(dest, resourcer.Title()), v); err != nil {
+				return err
+			}
+		}
+	case resource.MP3ChapterResource:
+		fmt.Printf("[chapter] %s\n", resourcer.Title())
+		for _, v := range resourcer.Chapters() {
+			fmt.Printf("[chapter][download] %s\n", v.Title())
+			if err := downloadAtom(filepath.Join(dest, resourcer.Title()), v); err != nil {
+				return err
+			}
+		}
+	case resource.Mp3Resource:
+		fmt.Printf("[download] %s\n", resourcer.Title())
+		if err := downloadAtom(dest, resourcer); err != nil {
+			return err
+		}
+		if err := resourcer.MP3().UpdateTag(filepath.Join(dest, resourcer.Title())); err != nil {
+			return err
+		}
+	case resource.Resource:
+		fmt.Printf("[download] %s\n", resourcer.Title())
+		if err := downloadAtom(dest, resourcer); err != nil {
+			return err
+		}
+	default:
+		return fmt.Errorf("unsupport %T", resourcer)
+	}
 }
 
-func Download(dest string, resource resource.Resource) error {
+func downloadAtom(dest string, resource resource.Resource) error {
 	_ = os.MkdirAll(dest, os.ModePerm)
 
 	tempFile := filepath.Join(dest, resource.Title()+".tmp")
