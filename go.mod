@@ -13,7 +13,6 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/sirupsen/logrus v1.8.1
 	github.com/urfave/cli/v2 v2.4.0
-	github.com/vbauerster/mpb/v5 v5.4.0
 	github.com/vbauerster/mpb/v7 v7.4.1
 	rogchap.com/v8go v0.7.0
 )

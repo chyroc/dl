@@ -24,7 +24,8 @@ func (r *videoSinaComCn) Kind() string {
 func (r *videoSinaComCn) ExampleURLs() []string {
 	return []string{
 		"http://video.sina.com.cn/p/ent/doc/2016-10-14/225965380865.html",
-		"http://video.sina.com.cn/p/ent/doc/2018-02-07/090568002248.html"}
+		"http://video.sina.com.cn/p/ent/doc/2018-02-07/090568002248.html",
+	}
 }
 
 func (r *videoSinaComCn) Parse(uri string) (resource.Resource, error) {
