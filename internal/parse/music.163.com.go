@@ -22,6 +22,10 @@ func (r *music163Com) ExampleURLs() []string {
 		"https://music.163.com/#/song?id=1843572582",
 		"https://music.163.com/#/album?id=132874562",
 		"https://music.163.com/#/playlist?id=156934569",
+		"https://music.163.com/#/discover/toplist?id=1978921795",
+		"https://music.163.com/#/artist?id=905705",
+		"https://music.163.com/#/djradio?id=970764541",
+		"https://music.163.com/#/program?id=2499619396",
 	}
 }
 
@@ -46,6 +50,24 @@ func (r *music163Com) Parse(uri string) (resource.Resource, error) {
 	if len(mp3List) == 1 {
 		return resource.NewMp3(mp3List[0]), nil
 	}
-	panic("")
-	// return download.NewDownloadMp3List(mp3List[0].SavePath, mp3List[0].SavePath, mp3List), nil
+
+	chapters := []resource.Mp3Resource{}
+	for _, v := range mp3List {
+		chapters = append(chapters, resource.NewMp32(v))
+	}
+
+	switch req := req.(type) {
+	case *netease.SongRequest:
+		panic("unreachable song multi data")
+	case *netease.ArtistRequest:
+		return resource.NewMP3Chapter(req.Response.Artist.Name, chapters), nil
+	case *netease.AlbumRequest:
+		return resource.NewMP3Chapter(req.Response.Album.Name, chapters), nil
+	case *netease.PlaylistRequest:
+		return resource.NewMP3Chapter(req.Response.Playlist.Name, chapters), nil
+	case *netease.DjradioRequest:
+		return resource.NewMP3Chapter(req.Response.Programs[0].Dj.Brand, chapters), nil
+	default:
+		panic(fmt.Sprintf("unreachable type: %T", req))
+	}
 }

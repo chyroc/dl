@@ -15,6 +15,12 @@ func NewMp3(mp3 *MP3) Resource {
 	}
 }
 
+func NewMp32(mp3 *MP3) Mp3Resource {
+	return &mp3Resource{
+		mp3: mp3,
+	}
+}
+
 func (r *mp3Resource) Title() string {
 	return r.mp3.FileName
 }

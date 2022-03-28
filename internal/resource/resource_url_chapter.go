@@ -30,10 +30,6 @@ func (r *urlChapter) Reader() (int64, io.ReadCloser, error) {
 	panic("un reachable")
 }
 
-func (r *urlChapter) ChapterCount() int {
-	return len(r.chapterList)
-}
-
 func (r *urlChapter) Chapters() []Resource {
 	return r.chapterList
 }

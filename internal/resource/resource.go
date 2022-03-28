@@ -12,13 +12,17 @@ type Resource interface {
 
 type ChapterResource interface {
 	Resource
-	ChapterCount() int
 	Chapters() []Resource
 }
 
 type Mp3Resource interface {
 	Resource
 	MP3() *MP3
+}
+
+type MP3ChapterResource interface {
+	Resource
+	Chapters() []Mp3Resource
 }
 
 var downloadHttpClient = http.Client{}

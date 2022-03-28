@@ -17,6 +17,7 @@ type Tag struct {
 }
 
 type MP3 struct {
+	ID          int
 	FileName    string
 	SavePath    string
 	Playable    bool

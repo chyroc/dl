@@ -75,8 +75,12 @@ func (s *Song) Extract() *resource.MP3 {
 	}
 
 	return &resource.MP3{
-		FileName: fileName,
-		Playable: true,
-		Tag:      tag,
+		ID:          s.Id,
+		FileName:    fileName,
+		SavePath:    "",
+		Playable:    true,
+		DownloadUrl: "",
+		Tag:         tag,
+		Origin:      0,
 	}
 }

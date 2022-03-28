@@ -2,6 +2,7 @@ package internal
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/chyroc/dl/internal/identify"
 	"github.com/urfave/cli/v2"
@@ -13,7 +14,15 @@ func RunExample(c *cli.Context) {
 		url = c.Args().Get(0)
 	}
 	if url != "" {
-		downloadExample(url)
+		if strings.HasPrefix(url, "http") {
+			downloadExample(url)
+		} else {
+			for _, internalURL := range identify.ExampleURLs {
+				if strings.Contains(internalURL, url) {
+					downloadExample(internalURL)
+				}
+			}
+		}
 	} else {
 		for _, url := range identify.ExampleURLs {
 			if url == "" {
