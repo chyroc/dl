@@ -4,7 +4,7 @@ Download Chinese Website Video, Audio, Image, Document, etc.
 
 ## Support Website
 
-support 23 websites
+support 24 websites
 
 - [36kr.com](36kr.com)
 - [filetype.m3u8](filetype.m3u8)
@@ -14,6 +14,7 @@ support 23 websites
 - [m.weibo.cn](m.weibo.cn)
 - [mp.weixin.qq.com](mp.weixin.qq.com)
 - [music.163.com](music.163.com)
+- [news.cctv.com](news.cctv.com)
 - [open.163.com](open.163.com)
 - [tv.sohu.com](tv.sohu.com)
 - [v.cctv.com](v.cctv.com)
