@@ -11,7 +11,7 @@ require (
 	github.com/chyroc/gorequests v0.33.0
 	github.com/mattn/go-runewidth v0.0.13
 	github.com/sirupsen/logrus v1.8.1
-	github.com/urfave/cli/v2 v2.5.1
+	github.com/urfave/cli/v2 v2.6.0
 	github.com/vbauerster/mpb/v7 v7.4.1
 	rogchap.com/v8go v0.7.0
 )
