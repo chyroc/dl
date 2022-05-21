@@ -11,7 +11,7 @@ require (
 	github.com/chyroc/gorequests v0.33.0
 	github.com/mattn/go-runewidth v0.0.13
 	github.com/sirupsen/logrus v1.8.1
-	github.com/urfave/cli/v2 v2.6.0
+	github.com/urfave/cli/v2 v2.7.1
 	github.com/vbauerster/mpb/v7 v7.4.1
 	rogchap.com/v8go v0.7.0
 )
@@ -20,6 +20,7 @@ require (
 	github.com/VividCortex/ewma v1.2.0 // indirect
 	github.com/acarl005/stripansi v0.0.0-20180116102854-5a71ef0e047d // indirect
 	github.com/andybalholm/cascadia v1.3.1 // indirect
+	github.com/antzucaro/matchr v0.0.0-20210222213004-b04723ef80f0 // indirect
 	github.com/chyroc/persistent-cookiejar v0.1.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
