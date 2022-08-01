@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/PuerkitoBio/goquery v1.8.0
 	github.com/bogem/id3v2 v1.2.0
-	github.com/briandowns/spinner v1.18.1
+	github.com/briandowns/spinner v1.19.0
 	github.com/chyroc/go-assert v1.9.0
 	github.com/chyroc/go-lambda v0.8.0
 	github.com/chyroc/gorequests v0.33.0
