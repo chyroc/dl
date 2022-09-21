@@ -12,7 +12,7 @@ require (
 	github.com/mattn/go-runewidth v0.0.14
 	github.com/sirupsen/logrus v1.9.0
 	github.com/urfave/cli/v2 v2.16.3
-	github.com/vbauerster/mpb/v7 v7.5.2
+	github.com/vbauerster/mpb/v7 v7.5.3
 	rogchap.com/v8go v0.7.0
 )
 
@@ -31,7 +31,7 @@ require (
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	golang.org/x/net v0.0.0-20211215060638-4ddde0e984e9 // indirect
-	golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8 // indirect
+	golang.org/x/sys v0.0.0-20220909162455-aba9fc2a8ff2 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
