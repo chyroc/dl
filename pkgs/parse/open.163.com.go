@@ -54,7 +54,7 @@ func (r *open163Com) Parse(uri string) (resource.Resourcer, error) {
 	}
 
 	// return download.new(meta.Data[0].Title, meta.Data[0].Title, ".mp4", chapters), err
-	return resource.NewURLChapter(meta.Data[0].Title, chapters), err
+	return resource.NewChapter(meta.Data[0].Title, chapters), err
 }
 
 var open163ComCharMidReg = regexp.MustCompile(`__NUXT__=(.*?);<`)

@@ -100,7 +100,7 @@ func (r *{{ .LowerCamelCaseHost }}) ExampleURLs() []string {
 	return []string{}
 }
 
-func (r *{{ .LowerCamelCaseHost }}) Parse(uri string) (resource.Resource, error) {
+func (r *{{ .LowerCamelCaseHost }}) Parse(uri string) (resource.Resourcer, error) {
 	panic("")
 }
 `

@@ -63,7 +63,7 @@ func (r *wwwMissevanCom) Parse(uri string) (resource.Resourcer, error) {
 				// sid := strconv.FormatInt(v.SoundID, 10)
 				chapters = append(chapters, resource.NewURL(fmt.Sprintf("%s_%d.mp3", v.Soundstr, v.SoundID), urls[idx]))
 			}
-			return resource.NewURLChapter(resp.Info.Drama.Name, chapters), nil
+			return resource.NewChapter(resp.Info.Drama.Name, chapters), nil
 		}
 	}
 

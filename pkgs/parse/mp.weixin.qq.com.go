@@ -4,10 +4,9 @@ import (
 	"fmt"
 	"net/http"
 	"regexp"
-	"strings"
 
-	"github.com/PuerkitoBio/goquery"
 	"github.com/chyroc/dl/pkgs/config"
+	"github.com/chyroc/dl/pkgs/helper"
 	"github.com/chyroc/dl/pkgs/resource"
 )
 
@@ -34,15 +33,7 @@ func (r *mpWeixinQqCom) Parse(uri string) (resource.Resourcer, error) {
 		return nil, err
 	}
 
-	doc, _ := goquery.NewDocumentFromReader(strings.NewReader(text))
-
-	title := strings.TrimSpace(doc.Find("title").Text())
-	if title == "" {
-		title = strings.TrimSpace(doc.Find("meta[property='og:title']").AttrOr("content", ""))
-	}
-	if title == "" {
-		title = strings.TrimSpace(doc.Find("meta[property='twitter:title']").AttrOr("content", ""))
-	}
+	title := helper.HtmlTitle(text)
 
 	videoType := getMatchString(text, videoTypeReg)
 	mid := getMatchString(text, midReg)
@@ -54,13 +45,13 @@ func (r *mpWeixinQqCom) Parse(uri string) (resource.Resourcer, error) {
 		if err != nil {
 			return nil, err
 		}
-		return resource.NewURLChapter(title, videos), nil
+		return resource.NewChapter(title, videos), nil
 	case "2":
 		videos, err := r.getType2Video(biz, mid, text)
 		if err != nil {
 			return nil, err
 		}
-		return resource.NewURLChapter(title, videos), nil
+		return resource.NewChapter(title, videos), nil
 	default:
 		return nil, fmt.Errorf("unknown video type: %s", videoType)
 	}

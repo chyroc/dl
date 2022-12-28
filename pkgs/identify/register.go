@@ -23,6 +23,7 @@ func init() {
 	register(parse.NewVideoCaixinCom())
 	register(parse.NewVideoSinaComCn())
 	register(parse.NewWww333tttCom())
+	register(parse.NewWwwHanjukankanCom())
 	register(parse.NewWwwMissevanCom())
 	register(parse.NewWwwSztvComCn())
 	register(parse.NewWwwZhihuCom())

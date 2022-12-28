@@ -10,6 +10,8 @@ import (
 
 	"github.com/oopsguy/m3u8/parse"
 	"github.com/oopsguy/m3u8/tool"
+
+	"github.com/chyroc/dl/pkgs/helper"
 )
 
 type m3u8Resource struct {
@@ -32,6 +34,10 @@ func (r *m3u8Resource) Title() string {
 
 func (r *m3u8Resource) Reader() (int64, io.ReadCloser, error) {
 	panic("not impl")
+}
+
+func (r *m3u8Resource) Trigger(file string) (string, error) {
+	return helper.M3u8ToMp4(file)
 }
 
 func (r *m3u8Resource) Reader2() (func() int64, io.ReadCloser, error) {

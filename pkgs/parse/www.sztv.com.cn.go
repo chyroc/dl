@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+
 	"github.com/chyroc/dl/pkgs/config"
 	"github.com/chyroc/dl/pkgs/resource"
 )
@@ -42,5 +43,5 @@ func (r *wwwSztvComCn) Parse(uri string) (resource.Resourcer, error) {
 		chapterList = append(chapterList, resource.NewURL(title+".mp4", src))
 	})
 
-	return resource.NewURLChapter(pageTitle, chapterList), nil
+	return resource.NewChapter(pageTitle, chapterList), nil
 }

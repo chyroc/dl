@@ -55,10 +55,9 @@ func Download(dest, prefix string, resourcer resource.Resourcer) error {
 
 func downloadAtom(dest, prefix string, resourceIns resource.Resourcer) error {
 	_ = os.MkdirAll(dest, os.ModePerm)
-
-	tempFile := filepath.Join(dest, resourceIns.Title()+".tmp")
 	realFile := filepath.Join(dest, resourceIns.Title())
-	f, err := os.OpenFile(tempFile, os.O_CREATE|os.O_WRONLY, 0o644)
+
+	temFile, err := os.CreateTemp("", "dl-output-temp-*.mp4")
 	if err != nil {
 		return err
 	}
@@ -77,11 +76,19 @@ func downloadAtom(dest, prefix string, resourceIns resource.Resourcer) error {
 	readCloser := helper.NewProgressReaderClose(genPrefix(prefix, realFile), length, lengthGen, reader, false)
 	defer readCloser.Close()
 
-	if _, err = io.Copy(f, readCloser); err != nil {
+	if _, err = io.Copy(temFile, readCloser); err != nil {
 		return err
 	}
 
-	return helper.Rename(tempFile, realFile)
+	temFilepath := temFile.Name()
+	if triggerIns, ok := resourceIns.(resource.ResourcerAfterTrigger); ok {
+		temFilepath, err = triggerIns.Trigger(temFilepath)
+		if err != nil {
+			return err
+		}
+	}
+
+	return helper.Rename(temFilepath, realFile)
 }
 
 func genPrefix(prefix string, filename string) string {

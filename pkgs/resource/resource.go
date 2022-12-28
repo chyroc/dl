@@ -16,6 +16,10 @@ type Resourcer2 interface {
 	Reader2() (func() int64, io.ReadCloser, error)
 }
 
+type ResourcerAfterTrigger interface {
+	Trigger(file string) (string, error)
+}
+
 type ChapterResource interface {
 	Resourcer
 	Chapters() []Resourcer

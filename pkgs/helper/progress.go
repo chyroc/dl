@@ -41,12 +41,14 @@ func NewProgressReaderClose(prefix string, length int64, lengthGen func() int64,
 		length,
 		barOptions...,
 	)
-	go func() {
-		for {
-			bar.SetTotal(lengthGen(), false)
-			time.Sleep(time.Second)
-		}
-	}()
+	if lengthGen != nil {
+		go func() {
+			for {
+				bar.SetTotal(lengthGen(), false)
+				time.Sleep(time.Second)
+			}
+		}()
+	}
 	return &ProgressReader{
 		ReadCloser: bar.ProxyReader(body),
 		progress:   progress,

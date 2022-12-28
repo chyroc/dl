@@ -24,3 +24,4 @@ bin/
 netease_download/
 dl.sh
 output/
+.DS_Store
