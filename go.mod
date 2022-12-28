@@ -10,9 +10,11 @@ require (
 	github.com/chyroc/go-lambda v0.8.0
 	github.com/chyroc/gorequests v0.33.0
 	github.com/mattn/go-runewidth v0.0.14
+	github.com/oopsguy/m3u8 v0.0.0-20190630112258-4150e93ec8f4
 	github.com/sirupsen/logrus v1.9.0
 	github.com/urfave/cli/v2 v2.23.7
 	github.com/vbauerster/mpb/v7 v7.5.3
+	rogchap.com/v8go v0.7.0
 )
 
 require (
@@ -36,5 +38,4 @@ require (
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	rogchap.com/v8go v0.7.0 // indirect
 )

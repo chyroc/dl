@@ -3,26 +3,34 @@ package resource
 import (
 	"io"
 	"net/http"
+	"time"
 )
 
-type Resource interface {
+type Resourcer interface {
 	Title() string
 	Reader() (int64, io.ReadCloser, error)
 }
 
+type Resourcer2 interface {
+	Title() string
+	Reader2() (func() int64, io.ReadCloser, error)
+}
+
 type ChapterResource interface {
-	Resource
-	Chapters() []Resource
+	Resourcer
+	Chapters() []Resourcer
 }
 
 type Mp3Resource interface {
-	Resource
+	Resourcer
 	MP3() *MP3
 }
 
 type MP3ChapterResource interface {
-	Resource
+	Resourcer
 	Chapters() []Mp3Resource
 }
 
-var downloadHttpClient = http.Client{}
+var downloadHttpClient = http.Client{
+	Timeout: time.Second * 60,
+}

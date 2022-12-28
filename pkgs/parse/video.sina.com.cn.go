@@ -28,7 +28,7 @@ func (r *videoSinaComCn) ExampleURLs() []string {
 	}
 }
 
-func (r *videoSinaComCn) Parse(uri string) (resource.Resource, error) {
+func (r *videoSinaComCn) Parse(uri string) (resource.Resourcer, error) {
 	videoID, err := r.getVideoID(uri)
 	if err != nil {
 		return nil, err

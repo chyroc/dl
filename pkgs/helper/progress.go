@@ -2,6 +2,7 @@ package helper
 
 import (
 	"io"
+	"time"
 
 	"github.com/vbauerster/mpb/v7"
 	"github.com/vbauerster/mpb/v7/decor"
@@ -18,7 +19,7 @@ func (r *ProgressReader) SetTotal(n int64, complete bool) {
 	r.bar.SetTotal(n, complete)
 }
 
-func NewProgressReaderClose(prefix string, length int64, body io.Reader, chapter bool) *ProgressReader {
+func NewProgressReaderClose(prefix string, length int64, lengthGen func() int64, body io.Reader, chapter bool) *ProgressReader {
 	progress := mpb.New(mpb.WithWidth(20))
 	barOptions := []mpb.BarOption{}
 	if true {
@@ -40,6 +41,12 @@ func NewProgressReaderClose(prefix string, length int64, body io.Reader, chapter
 		length,
 		barOptions...,
 	)
+	go func() {
+		for {
+			bar.SetTotal(lengthGen(), false)
+			time.Sleep(time.Second)
+		}
+	}()
 	return &ProgressReader{
 		ReadCloser: bar.ProxyReader(body),
 		progress:   progress,

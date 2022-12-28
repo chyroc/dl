@@ -23,7 +23,7 @@ func (r *wwwSztvComCn) ExampleURLs() []string {
 	return []string{""}
 }
 
-func (r *wwwSztvComCn) Parse(uri string) (resource.Resource, error) {
+func (r *wwwSztvComCn) Parse(uri string) (resource.Resourcer, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {
 		return nil, err
@@ -31,7 +31,7 @@ func (r *wwwSztvComCn) Parse(uri string) (resource.Resource, error) {
 	d, _ := goquery.NewDocumentFromReader(strings.NewReader(text))
 
 	pageTitle := strings.TrimSpace(d.Find("title").Text())
-	chapterList := []resource.Resource{}
+	chapterList := []resource.Resourcer{}
 	d.Find(".videoInfo").Each(func(i int, s *goquery.Selection) {
 		title := s.AttrOr("title", "")
 		src := s.AttrOr("src", "")

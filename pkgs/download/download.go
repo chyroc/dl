@@ -6,12 +6,13 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/mattn/go-runewidth"
+
 	"github.com/chyroc/dl/pkgs/helper"
 	"github.com/chyroc/dl/pkgs/resource"
-	"github.com/mattn/go-runewidth"
 )
 
-func Download(dest, prefix string, resourcer resource.Resource) error {
+func Download(dest, prefix string, resourcer resource.Resourcer) error {
 	// 4. download
 	switch resourcer := resourcer.(type) {
 	case resource.ChapterResource:
@@ -40,7 +41,7 @@ func Download(dest, prefix string, resourcer resource.Resource) error {
 		if err := resourcer.MP3().UpdateTag(filepath.Join(dest, resourcer.Title())); err != nil {
 			return err
 		}
-	case resource.Resource:
+	case resource.Resourcer:
 		fmt.Printf("%s %s\n", prefix, resourcer.Title())
 		if err := downloadAtom(dest, prefix, resourcer); err != nil {
 			return err
@@ -52,25 +53,31 @@ func Download(dest, prefix string, resourcer resource.Resource) error {
 	return nil
 }
 
-func downloadAtom(dest, prefix string, resource resource.Resource) error {
+func downloadAtom(dest, prefix string, resourceIns resource.Resourcer) error {
 	_ = os.MkdirAll(dest, os.ModePerm)
 
-	tempFile := filepath.Join(dest, resource.Title()+".tmp")
-	realFile := filepath.Join(dest, resource.Title())
+	tempFile := filepath.Join(dest, resourceIns.Title()+".tmp")
+	realFile := filepath.Join(dest, resourceIns.Title())
 	f, err := os.OpenFile(tempFile, os.O_CREATE|os.O_WRONLY, 0o644)
 	if err != nil {
 		return err
 	}
-
-	length, reader, err := resource.Reader()
+	var length int64
+	var lengthGen func() int64
+	var reader io.Reader
+	if r, ok := resourceIns.(resource.Resourcer2); ok {
+		lengthGen, reader, err = r.Reader2()
+	} else {
+		length, reader, err = resourceIns.Reader()
+	}
 	if err != nil {
 		return err
 	}
 
-	reader = helper.NewProgressReaderClose(genPrefix(prefix, realFile), length, reader, false)
-	defer reader.Close()
+	readCloser := helper.NewProgressReaderClose(genPrefix(prefix, realFile), length, lengthGen, reader, false)
+	defer readCloser.Close()
 
-	if _, err = io.Copy(f, reader); err != nil {
+	if _, err = io.Copy(f, readCloser); err != nil {
 		return err
 	}
 

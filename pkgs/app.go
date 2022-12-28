@@ -23,7 +23,6 @@ func DownloadData(args *Argument) error {
 	} else if parser == nil {
 		return fmt.Errorf("unsupport %q", args.URL)
 	}
-	parser.Kind()
 	fmt.Printf("[%s] resource kind=%s\n", URL.Host, parser.Kind())
 
 	// 3. parse

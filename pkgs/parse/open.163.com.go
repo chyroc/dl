@@ -28,7 +28,7 @@ func (r *open163Com) ExampleURLs() []string {
 	}
 }
 
-func (r *open163Com) Parse(uri string) (resource.Resource, error) {
+func (r *open163Com) Parse(uri string) (resource.Resourcer, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {
 		return nil, err
@@ -48,7 +48,7 @@ func (r *open163Com) Parse(uri string) (resource.Resource, error) {
 		return resource.NewURL(m.Title+".mp4", m.Mp4ShareURL), nil
 	}
 
-	chapters := []resource.Resource{}
+	chapters := []resource.Resourcer{}
 	for _, v := range meta.State.Movie.MoiveList {
 		chapters = append(chapters, resource.NewURL(fmt.Sprintf("%s_%d_%s.mp4", v.Mid, v.PNumber, v.Title), v.Mp4ShareURL))
 	}

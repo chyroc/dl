@@ -23,7 +23,7 @@ func (r *mobileWeiboCn) ExampleURLs() []string {
 	return []string{""}
 }
 
-func (r *mobileWeiboCn) Parse(uri string) (resource.Resource, error) {
+func (r *mobileWeiboCn) Parse(uri string) (resource.Resourcer, error) {
 	header := prepareCommonHeader(uri, nil)
 	text, err := config.ReqCli.New(http.MethodGet, uri).WithHeaders(header).Text()
 	if err != nil {

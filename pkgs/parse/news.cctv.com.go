@@ -28,7 +28,7 @@ func (r *newsCctvCom) ExampleURLs() []string {
 	return []string{"http://news.cctv.com/2021/10/02/VIDEjj6VR17N4AEAIrUXmwWV211002.shtml"}
 }
 
-func (r *newsCctvCom) Parse(uri string) (resource.Resource, error) {
+func (r *newsCctvCom) Parse(uri string) (resource.Resourcer, error) {
 	guid, err := r.getGuid(uri)
 	if err != nil {
 		return nil, err

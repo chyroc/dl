@@ -11,14 +11,14 @@ type urlResource struct {
 	specs []*Specification
 }
 
-func NewURL(title string, url string) Resource {
+func NewURL(title string, url string) Resourcer {
 	return &urlResource{
 		title: title,
 		url:   url,
 	}
 }
 
-func NewURLWithSpecification(title string, specifications []*Specification) Resource {
+func NewURLWithSpecification(title string, specifications []*Specification) Resourcer {
 	return &urlResource{
 		title: title,
 		specs: specifications,

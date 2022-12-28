@@ -14,7 +14,7 @@ type urlCombineResource struct {
 	sep      []byte
 }
 
-func NewURLCombineResource(title string, urls []string) Resource {
+func NewURLCombineResource(title string, urls []string) Resourcer {
 	return &urlCombineResource{
 		title: title,
 		urls:  urls,
@@ -26,7 +26,7 @@ type URLCombineOption struct {
 	Sep      []byte
 }
 
-func NewURLCombineWithOption(title string, urls []string, option *URLCombineOption) Resource {
+func NewURLCombineWithOption(title string, urls []string, option *URLCombineOption) Resourcer {
 	return &urlCombineResource{
 		title:    title,
 		urls:     urls,

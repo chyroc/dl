@@ -9,6 +9,7 @@ import (
 	"strconv"
 
 	"github.com/PuerkitoBio/goquery"
+
 	"github.com/chyroc/dl/pkgs/resource"
 )
 
@@ -26,7 +27,7 @@ func (r *mBggeeCom) ExampleURLs() []string {
 	return []string{""}
 }
 
-func (r *mBggeeCom) Parse(uri string) (resource.Resource, error) {
+func (r *mBggeeCom) Parse(uri string) (resource.Resourcer, error) {
 	match := regexp.MustCompile(`https://m.bggee.com/book_(\d+)/`).FindStringSubmatch(uri)
 	if len(match) != 2 {
 		return nil, fmt.Errorf("匹配不到 book_id")

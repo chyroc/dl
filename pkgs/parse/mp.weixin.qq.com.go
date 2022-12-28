@@ -28,7 +28,7 @@ func (r *mpWeixinQqCom) ExampleURLs() []string {
 	}
 }
 
-func (r *mpWeixinQqCom) Parse(uri string) (resource.Resource, error) {
+func (r *mpWeixinQqCom) Parse(uri string) (resource.Resourcer, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {
 		return nil, err
@@ -66,7 +66,7 @@ func (r *mpWeixinQqCom) Parse(uri string) (resource.Resource, error) {
 	}
 }
 
-func (r *mpWeixinQqCom) getType2Video(biz, mid, text string) (res []resource.Resource, err error) {
+func (r *mpWeixinQqCom) getType2Video(biz, mid, text string) (res []resource.Resourcer, err error) {
 	matches := mpvidType2Reg.FindAllStringSubmatch(text, -1)
 	for _, match := range matches {
 		vid := match[1]
@@ -89,7 +89,7 @@ func (r *mpWeixinQqCom) getType2Video(biz, mid, text string) (res []resource.Res
 	return res, nil
 }
 
-func (r *mpWeixinQqCom) getType1Video(text string) (res []resource.Resource, err error) {
+func (r *mpWeixinQqCom) getType1Video(text string) (res []resource.Resourcer, err error) {
 	matches := vidType1Reg.FindAllStringSubmatch(text, -1)
 	for _, match := range matches {
 		if match[1] == "" {

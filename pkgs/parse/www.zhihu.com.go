@@ -23,7 +23,7 @@ func (r *wwwZhihuCom) ExampleURLs() []string {
 	return []string{""}
 }
 
-func (r *wwwZhihuCom) Parse(uri string) (resource.Resource, error) {
+func (r *wwwZhihuCom) Parse(uri string) (resource.Resourcer, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {
 		return nil, err

@@ -28,7 +28,7 @@ func (r *vDouyinCom) ExampleURLs() []string {
 	}
 }
 
-func (r *vDouyinCom) Parse(uri string) (resource.Resource, error) {
+func (r *vDouyinCom) Parse(uri string) (resource.Resourcer, error) {
 	vid, err := r.getVideoID(uri)
 	if err != nil {
 		return nil, err

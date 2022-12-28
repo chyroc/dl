@@ -18,7 +18,7 @@ func (r *yQqCom) ExampleURLs() []string {
 	return []string{"https://y.qq.com/n/yqq/song/002Zkt5S2z8JZx.html"}
 }
 
-func (r *yQqCom) Parse(uri string) (resource.Resource, error) {
+func (r *yQqCom) Parse(uri string) (resource.Resourcer, error) {
 	panic("")
 	// req, err := tencent.Parse(uri)
 	// if err != nil {

@@ -29,7 +29,7 @@ func (r *vYoukuCom) ExampleURLs() []string {
 	}
 }
 
-func (r *vYoukuCom) Parse(uri string) (resource.Resource, error) {
+func (r *vYoukuCom) Parse(uri string) (resource.Resourcer, error) {
 	meta, err := r.getMeta(uri)
 	if err != nil {
 		return nil, err

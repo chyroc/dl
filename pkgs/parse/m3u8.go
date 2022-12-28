@@ -20,8 +20,8 @@ func (r *m3u8) ExampleURLs() []string {
 	return []string{""}
 }
 
-func (r *m3u8) Parse(uri string) (resource.Resource, error) {
+func (r *m3u8) Parse(uri string) (resource.Resourcer, error) {
 	x := strings.Split(uri, ".")
 	base := x[len(x)-1]
-	return resource.NewURL(base, uri), nil
+	return resource.NewM3U8(30, base, uri)
 }

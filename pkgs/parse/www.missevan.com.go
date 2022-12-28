@@ -26,7 +26,7 @@ func (r *wwwMissevanCom) ExampleURLs() []string {
 	return []string{"https://www.missevan.com/sound/player?id=1303686"}
 }
 
-func (r *wwwMissevanCom) Parse(uri string) (resource.Resource, error) {
+func (r *wwwMissevanCom) Parse(uri string) (resource.Resourcer, error) {
 	videoID, err := r.getVideoID(uri)
 	if err != nil {
 		return nil, err
@@ -58,7 +58,7 @@ func (r *wwwMissevanCom) Parse(uri string) (resource.Resource, error) {
 			}
 			wg.Wait()
 
-			chapters := []resource.Resource{}
+			chapters := []resource.Resourcer{}
 			for idx, v := range resp.Info.Episodes.Episode {
 				// sid := strconv.FormatInt(v.SoundID, 10)
 				chapters = append(chapters, resource.NewURL(fmt.Sprintf("%s_%d.mp3", v.Soundstr, v.SoundID), urls[idx]))

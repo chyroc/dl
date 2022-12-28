@@ -9,7 +9,7 @@ type mp3Resource struct {
 	mp3 *MP3
 }
 
-func NewMp3(mp3 *MP3) Resource {
+func NewMp3(mp3 *MP3) Resourcer {
 	return &mp3Resource{
 		mp3: mp3,
 	}

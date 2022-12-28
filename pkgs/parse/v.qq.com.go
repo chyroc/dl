@@ -19,7 +19,7 @@ func (r *vQqCom) ExampleURLs() []string {
 	return []string{"https://v.qq.com/txp/iframe/player.html?vid=j0822mqey5h"}
 }
 
-func (r *vQqCom) Parse(uri string) (resource.Resource, error) {
+func (r *vQqCom) Parse(uri string) (resource.Resourcer, error) {
 	video, err := qqvideo.New().Extract(uri)
 	if err != nil {
 		return nil, err

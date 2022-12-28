@@ -29,7 +29,7 @@ func (r *music163Com) ExampleURLs() []string {
 	}
 }
 
-func (r *music163Com) Parse(uri string) (resource.Resource, error) {
+func (r *music163Com) Parse(uri string) (resource.Resourcer, error) {
 	req, err := netease.Parse(uri)
 	if err != nil {
 		return nil, err

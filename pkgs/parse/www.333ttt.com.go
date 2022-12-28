@@ -22,7 +22,7 @@ func (r *www333tttCom) ExampleURLs() []string {
 	return []string{"http://www.333ttt.com/up/yy6182865.html"}
 }
 
-func (r *www333tttCom) Parse(uri string) (resource.Resource, error) {
+func (r *www333tttCom) Parse(uri string) (resource.Resourcer, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {
 		return nil, err

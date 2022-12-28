@@ -6,7 +6,7 @@ import (
 
 type urlChapter struct {
 	title       string
-	chapterList []Resource
+	chapterList []Resourcer
 }
 
 type Chapter struct {
@@ -15,7 +15,7 @@ type Chapter struct {
 	URL   string
 }
 
-func NewURLChapter(title string, chapterList []Resource) Resource {
+func NewURLChapter(title string, chapterList []Resourcer) Resourcer {
 	return &urlChapter{
 		title:       title,
 		chapterList: chapterList,
@@ -30,6 +30,6 @@ func (r *urlChapter) Reader() (int64, io.ReadCloser, error) {
 	panic("un reachable")
 }
 
-func (r *urlChapter) Chapters() []Resource {
+func (r *urlChapter) Chapters() []Resourcer {
 	return r.chapterList
 }

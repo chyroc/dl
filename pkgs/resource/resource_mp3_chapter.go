@@ -9,7 +9,7 @@ type mp3Chapter struct {
 	chapterList []Mp3Resource
 }
 
-func NewMP3Chapter(title string, chapterList []Mp3Resource) Resource {
+func NewMP3Chapter(title string, chapterList []Mp3Resource) Resourcer {
 	return &mp3Chapter{
 		title:       title,
 		chapterList: chapterList,
