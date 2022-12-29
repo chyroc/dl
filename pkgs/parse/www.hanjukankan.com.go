@@ -8,6 +8,8 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/PuerkitoBio/goquery"
+
 	"github.com/chyroc/dl/pkgs/config"
 	"github.com/chyroc/dl/pkgs/helper"
 	"github.com/chyroc/dl/pkgs/resource"
@@ -63,7 +65,7 @@ func (r *wwwHanjukankanCom) fetchAll(uri, vid string) (resource.Resourcer, error
 	}
 	tmp := []resource.Resourcer{}
 	for idx, v := range urls {
-		chapterResource, err := resource.NewM3U8(100, fmt.Sprintf("%s-%d.mp4", title, idx+1), v)
+		chapterResource, err := resource.NewM3U8(100, fmt.Sprintf("%sE%s.mp4", title, FormatIndex(idx+1)), v)
 		if err != nil {
 			return nil, err
 		}
@@ -97,6 +99,11 @@ func (r *wwwHanjukankanCom) getTitle(uri string) (string, error) {
 	text, err := config.ReqCli.New(http.MethodGet, uri).Text()
 	if err != nil {
 		return "", fmt.Errorf("get html of %s fail: %s", uri, err)
+	}
+	doc, _ := goquery.NewDocumentFromReader(strings.NewReader(text))
+	title := strings.TrimSpace(doc.Find("div.myui-content__detail > h1").Text())
+	if title != "" {
+		return title, nil
 	}
 
 	return helper.HtmlTitle(text), nil
@@ -137,4 +144,20 @@ type parseVideoURLResp struct {
 	S struct {
 		Video []string `json:"video"`
 	} `json:"s"`
+}
+
+func FormatIndex(i int) string {
+	if i < 10 {
+		return fmt.Sprintf("0%d", i)
+	}
+	if i < 100 {
+		return fmt.Sprintf("%2d", i)
+	}
+	if i < 1000 {
+		return fmt.Sprintf("%3d", i)
+	}
+	if i < 10000 {
+		return fmt.Sprintf("%4d", i)
+	}
+	return fmt.Sprintf("%d", i)
 }
