@@ -12,7 +12,7 @@ require (
 	github.com/mattn/go-runewidth v0.0.14
 	github.com/oopsguy/m3u8 v0.0.0-20190630112258-4150e93ec8f4
 	github.com/sirupsen/logrus v1.9.0
-	github.com/urfave/cli/v2 v2.23.7
+	github.com/urfave/cli/v2 v2.24.2
 	github.com/vbauerster/mpb/v7 v7.5.3
 	rogchap.com/v8go v0.7.0
 )
