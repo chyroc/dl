@@ -11,9 +11,9 @@ require (
 	github.com/chyroc/gorequests v0.33.0
 	github.com/mattn/go-runewidth v0.0.14
 	github.com/oopsguy/m3u8 v0.0.0-20190630112258-4150e93ec8f4
-	github.com/sirupsen/logrus v1.9.0
+	github.com/sirupsen/logrus v1.8.1
 	github.com/urfave/cli/v2 v2.23.7
-	github.com/vbauerster/mpb/v7 v7.5.3
+	github.com/vbauerster/mpb/v7 v7.4.1
 	rogchap.com/v8go v0.7.0
 )
 
@@ -31,10 +31,9 @@ require (
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
-	golang.org/x/net v0.0.0-20211215060638-4ddde0e984e9 // indirect
-	golang.org/x/sys v0.0.0-20220909162455-aba9fc2a8ff2 // indirect
+	golang.org/x/sys v0.0.0-20220722155257-8c9f86f7a55f // indirect
 	golang.org/x/term v0.1.0 // indirect
-	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/text v0.3.8 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
